@@ -113,12 +113,12 @@ If you need to recreate or modify the table:
    ```bash
    docker-compose exec mariadb mysql -u root -p
    ```
-
+   
 2. **Execute the SQL script**:
    ```bash
   docker-compose exec mariadb sh -c "mysql -u root -pnodered nodered < /tmp/init_box_aeroponik.sql"
    ```
-
+```
 3. **Verify table creation**:
    ```bash
    docker-compose exec mariadb mysql -u root -p -e "USE nodered; SHOW TABLES; DESCRIBE box_aeroponik;"
