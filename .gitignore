@@ -9,8 +9,8 @@ node-red-data/flows_cred.json
 node-red-data/.npm
 
 # Mosquitto
-/mosquitto/data/
-/mosquitto/log/
+mosquitto/data/
+mosquitto/log/
 
 # Python
 __pycache__/

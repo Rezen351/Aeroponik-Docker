@@ -1,4 +1,4 @@
-# 🚀 Aeroponik IoT Project
+# Aeroponik IoT Project
 
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
@@ -7,134 +7,187 @@
 [![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)](https://mariadb.org/)
 [![MinIO](https://img.shields.io/badge/MinIO-C72E49?style=for-the-badge&logo=minio&logoColor=white)](https://min.io/)
 
-## 📋 Table of Contents
-- [Overview](#overview)
-- [Services](#services)
+## Overview
+
+The Aeroponik IoT Project is a comprehensive Internet of Things (IoT) system designed for aeroponic applications. This project leverages Docker Compose to orchestrate multiple services, enabling seamless integration of hardware devices, data processing, and storage. It provides a robust platform for monitoring, controlling, and analyzing aeroponic systems through a combination of visual programming, messaging protocols, and RESTful APIs.
+
+## Table of Contents
+
+- [Features](#features)
+- [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
-- [Running the Project](#running-the-project)
+- [Getting Started](#getting-started)
+- [Services](#services)
 - [API Endpoints](#api-endpoints)
 - [MQTT Integration](#mqtt-integration)
 - [Directory Structure](#directory-structure)
 - [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
 - [License](#license)
 
-## 📖 Overview
-This project is an IoT system integrating multiple services using Docker Compose. It includes:
+## Features
 
-- **Node-RED**: Flow-based programming tool for wiring together hardware devices, APIs, and online services.
-- **MariaDB**: Relational database service for storing application data.
-- **Mosquitto**: MQTT broker for lightweight messaging between IoT devices.
-- **Python API Service**: Flask-based API service that connects to the MQTT broker and provides REST endpoints.
-- **MinIO**: Object storage service compatible with Amazon S3 APIs.
+- **Scalable IoT Architecture**: Modular design supporting easy addition of new devices and services
+- **Real-time Data Processing**: MQTT-based messaging for efficient device communication
+- **Visual Programming Interface**: Node-RED for intuitive workflow creation
+- **Data Persistence**: MariaDB for structured data storage and MinIO for object storage
+- **RESTful API**: Flask-based service for external integrations
+- **Containerized Deployment**: Docker Compose for consistent and portable environments
 
-## 🛠️ Services
+## Architecture
 
-### <details><summary>🌐 Node-RED</summary>
+The system comprises the following core components:
 
-- Runs on port `1881` (mapped to container port `1880`).
-- Stores data in the `node-red-data` directory.
-- [Access Node-RED](http://localhost:1881)
-- Features: Visual programming, extensive node library, real-time data flow.
+- **Node-RED**: Flow-based programming tool for wiring hardware devices, APIs, and online services
+- **MariaDB**: Relational database for storing application data with MySQL compatibility
+- **Mosquitto**: Lightweight MQTT broker for IoT device messaging
+- **Python API Service**: Flask-based REST API connecting MQTT broker and providing endpoints
+- **MinIO**: S3-compatible object storage for media and large data files
 
-</details>
+## Prerequisites
 
-### <details><summary>🗄️ MariaDB</summary>
+- Docker and Docker Compose installed on your system
+- Basic understanding of IoT concepts and MQTT protocol
+- Git for repository cloning
 
-- Runs on port `3308` (mapped to container port `3306`).
-- Uses environment variables for credentials.
-- Data persisted in Docker volume `db_data`.
-- Compatible with MySQL syntax.
+## Getting Started
 
-</details>
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd aeroponik
+   ```
 
-### <details><summary>📡 Mosquitto</summary>
+2. **Environment Configuration**
+   Create a `.env` file in the root directory with the following variables:
+   ```env
+   # MariaDB Configuration
+   MYSQL_ROOT_PASSWORD=your_root_password
+   MYSQL_DATABASE=aeroponik_db
+   MYSQL_USER=aeroponik_user
+   MYSQL_PASSWORD=your_user_password
 
-- MQTT broker running on ports `1883` (MQTT) and `9001` (WebSockets).
-- Configuration, data, and logs stored in `mosquitto` directory.
-- Lightweight and efficient for IoT messaging.
+   # MinIO Configuration
+   MINIO_ACCESS_KEY=your_access_key
+   MINIO_SECRET_KEY=your_secret_key
+   ```
 
-</details>
-
-### <details><summary>🐍 Python API Service</summary>
-
-- Flask API running on port `5000`.
-- Connects to MQTT broker at `mosquitto`.
-- Provides REST endpoints for IoT data management.
-
-</details>
-
-### <details><summary>📦 MinIO</summary>
-
-- Object storage service running on ports `9010` (API) and `9011` (Console).
-- Uses environment variables for access credentials.
-- [Access MinIO Console](http://localhost:9011)
-- Data persisted in Docker volume `minio_data`.
-
-</details>
-
-## 📋 Prerequisites
-- ✅ Docker and Docker Compose installed on your machine.
-- ✅ Basic knowledge of IoT concepts and MQTT.
-
-## ▶️ Running the Project
-1. Clone the repository.
-2. Create a `.env` file with necessary environment variables for MariaDB and MinIO.
-3. Run the following command to start all services:
+3. **Launch Services**
    ```bash
    docker-compose up -d
    ```
-4. Access services via their respective ports.
 
-## 🔗 API Endpoints
+4. **Access Services**
+   - Node-RED: [http://localhost:1881](http://localhost:1881)
+   - MinIO Console: [http://localhost:9011](http://localhost:9011)
+   - Python API: [http://localhost:5000](http://localhost:5000)
 
-The Python API Service provides the following endpoints:
+## Services
+
+### Node-RED
+- **Port**: 1881 (container: 1880)
+- **Purpose**: Visual programming interface for IoT workflows
+- **Data Storage**: `node-red-data/` directory
+- **Features**: Extensive node library, real-time data visualization
+
+### MariaDB
+- **Port**: 3308 (container: 3306)
+- **Purpose**: Relational database for structured data
+- **Persistence**: Docker volume `db_data`
+- **Compatibility**: MySQL syntax support
+
+### Mosquitto
+- **Ports**: 1883 (MQTT), 9001 (WebSockets)
+- **Purpose**: MQTT message broker for IoT communication
+- **Storage**: Configuration, data, and logs in `mosquitto/` directory
+
+### Python API Service
+- **Port**: 5000
+- **Purpose**: RESTful API for IoT data management
+- **Integration**: Connects to MQTT broker for real-time data
+
+### MinIO
+- **Ports**: 9010 (API), 9011 (Console)
+- **Purpose**: S3-compatible object storage
+- **Persistence**: Docker volume `minio_data`
+
+## API Endpoints
+
+The Python API Service exposes the following endpoints:
 
 ### GET /
-Basic health check.
+Health check endpoint.
 ```bash
 curl http://localhost:5000/
 ```
-Response: `{"message": "Aeroponik IoT API is running!"}`
+**Response**: `{"message": "Aeroponik IoT API is running!"}`
 
 ### GET /status
-Returns service status and MQTT broker info.
+Service status and MQTT broker information.
 ```bash
 curl http://localhost:5000/status
 ```
-Response: `{"status": "running", "mqtt_broker": "mosquitto"}`
+**Response**: `{"status": "running", "mqtt_broker": "mosquitto"}`
 
-## 📡 MQTT Integration
-- The Python API service subscribes to the MQTT topic `iot/cctv`.
-- MQTT broker is accessible at `mosquitto` hostname within the Docker network.
-- Use MQTT clients like [MQTT Explorer](https://mqtt-explorer.com/) to monitor topics.
+## MQTT Integration
 
-## 📁 Directory Structure
+- **Broker Hostname**: `mosquitto` (within Docker network)
+- **Subscribed Topic**: `iot/cctv`
+- **Client Tools**: Use [MQTT Explorer](https://mqtt-explorer.com/) for topic monitoring
+- **WebSocket Support**: Available on port 9001 for browser-based clients
+
+## Directory Structure
+
 ```
 aeroponik/
-├── node-red-data/     # Node-RED data and configuration
-├── mosquitto/         # Mosquitto configuration, data, and logs
-├── python/            # Python API service source code and Dockerfile
-├── docker-compose.yml # Docker Compose configuration
-└── README.md          # This file
+├── docker-compose.yml    # Docker Compose configuration
+├── .env                  # Environment variables (create this file)
+├── node-red-data/        # Node-RED data and configuration
+│   ├── flows.json        # Node-RED flow definitions
+│   ├── package.json      # Node-RED dependencies
+│   └── settings.js       # Node-RED configuration
+├── mosquitto/            # Mosquitto MQTT broker
+│   ├── config/           # Broker configuration
+│   ├── data/             # Persistent data
+│   └── log/              # Log files
+├── python/               # Python API service
+│   ├── app.py            # Main Flask application
+│   ├── requirements.txt  # Python dependencies
+│   └── Dockerfile        # Python service container
+└── README.md             # Project documentation
 ```
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
-- **Port conflicts**: Ensure ports 1881, 3308, 1883, 5000, 9010, 9011 are available.
-- **Environment variables**: Check `.env` file for correct MariaDB and MinIO credentials.
-- **Docker issues**: Run `docker-compose logs` to view service logs.
+
+- **Port Conflicts**: Ensure ports 1881, 3308, 1883, 5000, 9010, 9011 are available
+- **Environment Variables**: Verify `.env` file contains correct credentials
+- **Docker Issues**: Check service logs with `docker-compose logs`
 
 ### Useful Commands
-- View running containers: `docker ps`
-- Stop services: `docker-compose down`
-- Rebuild and restart: `docker-compose up --build -d`
 
-## 📄 License
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+- View running containers: `docker ps`
+- Stop all services: `docker-compose down`
+- Restart with rebuild: `docker-compose up --build -d`
+- View specific service logs: `docker-compose logs <service-name>`
+
+## Contributing
+
+We welcome contributions to the Aeroponik IoT Project. Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-⭐ If you find this project helpful, please give it a star!
-
-[Report Issues](https://github.com/your-repo/issues) | [Contribute](https://github.com/your-repo/contributing)
+**Project Repository**: [GitHub Link]  
+**Documentation**: [Wiki Link]  
+**Issues**: [Issue Tracker]
