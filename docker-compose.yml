@@ -1,0 +1,101 @@
+
+services:
+  # 1. Node-RED Service (dari permintaan Anda)
+  node-red:
+    image: nodered/node-red:latest-minimal
+    container_name: node-red
+    restart: unless-stopped
+    ports:
+      - "1881:1880"
+    volumes:
+      - ./node-red-data:/data
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    group_add:
+      - "dialout"
+    depends_on:
+      - mariadb
+      - mosquitto
+    networks:
+      - iot-net
+
+  # 2. MariaDB Service (Database)
+  mariadb:
+    image: mariadb:10.6
+    container_name: mariadb
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    networks:
+      - iot-net
+
+  # 3. Mosquitto Service (MQTT Broker)
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883" # Port MQTT standar
+      - "9001:9001" # Port MQTT over WebSockets
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - iot-net
+
+  # 4. Python API Service
+  python:
+    container_name: python
+    restart: unless-stopped
+    build:
+      context: ./python # Direktori berisi Dockerfile & kode Python
+    ports:
+      - "5000:5000" # Port untuk API
+    environment:
+      - MQTT_BROKER=mosquitto
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+    depends_on:
+      - mosquitto
+    volumes:
+      - ./python:/app
+    networks:
+      - iot-net
+
+  # 5. MinIO Service (Object Storage)
+  minio:
+    image: quay.io/minio/minio:RELEASE.2025-04-22T22-12-26Z
+    container_name: minio
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "9010:9000" # Port untuk MinIO API
+      - "9011:9001" # Port untuk MinIO Console
+    environment:
+      MINIO_ROOT_USER: ${MINIO_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD}
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - iot-net
+
+# Mendefinisikan Jaringan & Volume
+networks:
+  iot-net:
+    driver: bridge
+
+volumes:
+  db_data:
+  minio_data:

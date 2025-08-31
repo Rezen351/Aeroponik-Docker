@@ -1,0 +1,56 @@
+# Node-RED
+node-red-data/node_modules/
+/node-red-data/node_modules/
+node-red-data/.config.nodes.json.backup
+node-red-data/.config.runtime.json.backup
+node-red-data/.config.users.json.backup
+node-red-data/.flows.json.backup
+node-red-data/flows_cred.json
+
+# Mosquitto
+/mosquitto/data/
+/mosquitto/log/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git
+.mypy_cache
+.pytest_cache
+.hypothesis
+
+# Docker
+.env
+
+# Logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
