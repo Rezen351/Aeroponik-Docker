@@ -17,6 +17,7 @@ The Aeroponik IoT Project is a comprehensive Internet of Things (IoT) system des
 - [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
+- [Database Setup](#database-setup)
 - [Services](#services)
 - [API Endpoints](#api-endpoints)
 - [MQTT Integration](#mqtt-integration)
@@ -113,73 +114,74 @@ If you need to recreate or modify the table:
    ```bash
    docker-compose exec mariadb mysql -u root -p
    ```
-   
+
 2. **Execute the SQL script**:
    ```bash
-  docker-compose exec mariadb sh -c "mysql -u root -pnodered nodered < /tmp/init_box_aeroponik.sql"
+   docker-compose exec mariadb sh -c "mysql -u root -pnodered nodered < /tmp/init_box_aeroponik.sql"
    ```
-```
+
 3. **Verify table creation**:
    ```bash
    docker-compose exec mariadb mysql -u root -p -e "USE nodered; SHOW TABLES; DESCRIBE box_aeroponik;"
    ```
 
 #### Table Fields Description
-- `id`: Auto-incrementing primary key
-- `box`: Box identifier (1-255)
-- `temp1`, `temp2`, `temp3`: Temperature sensors (°C)
-- `hum1`, `hum2`: Humidity sensors (%)
-- `ec`: Electrical conductivity (μS/cm)
-- `ph`: pH level
-- `lv`: Liquid level sensor
-- `time`: Timestamp of data collection
+
+| Field | Type | Description | Unit |
+|-------|------|-------------|------|
+| `id` | int(11) | Auto-incrementing primary key | - |
+| `box` | tinyint(4) | Box identifier | 1-255 |
+| `temp1` | float | Temperature sensor 1 | °C |
+| `temp2` | float | Temperature sensor 2 | °C |
+| `temp3` | float | Temperature sensor 3 | °C |
+| `hum1` | float | Humidity sensor 1 | % |
+| `hum2` | float | Humidity sensor 2 | % |
+| `ec` | float | Electrical conductivity | μS/cm |
+| `ph` | float | pH level | - |
+| `lv` | tinyint(4) | Liquid level sensor | - |
+| `time` | timestamp | Data collection timestamp | - |
 
 ## Services
 
-### Node-RED
-- **Port**: 1881 (container: 1880)
-- **Purpose**: Visual programming interface for IoT workflows
-- **Data Storage**: `node-red-data/` directory
+| Service | Ports | Purpose | Storage/Persistence | Access URL |
+|---------|-------|---------|-------------------|------------|
+| **Node-RED** | 1881 (1880) | Visual programming interface for IoT workflows | `node-red-data/` directory | [http://localhost:1881](http://localhost:1881) |
+| **MariaDB** | 3308 (3306) | Relational database for structured data | Docker volume `db_data` | `mysql -h localhost -P 3308 -u root -p` |
+| **Mosquitto** | 1883, 9001 | MQTT message broker for IoT communication | `mosquitto/` directory | MQTT clients connect to `localhost:1883` |
+| **Python API** | 5000 | RESTful API for IoT data management | - | [http://localhost:5000](http://localhost:5000) |
+| **MinIO** | 9010, 9011 | S3-compatible object storage | Docker volume `minio_data` | [http://localhost:9011](http://localhost:9011) |
+
+### Service Details
+
+#### Node-RED
 - **Features**: Extensive node library, real-time data visualization
+- **Configuration**: Flows stored in `flows.json`
 
-### MariaDB
-- **Port**: 3308 (container: 3306)
-- **Purpose**: Relational database for structured data
-- **Persistence**: Docker volume `db_data`
+#### MariaDB
 - **Compatibility**: MySQL syntax support
+- **Database**: `nodered` (default)
+- **Admin Access**: [http://localhost:8080](http://localhost:8080) (Adminer)
 
-### Mosquitto
-- **Ports**: 1883 (MQTT), 9001 (WebSockets)
-- **Purpose**: MQTT message broker for IoT communication
-- **Storage**: Configuration, data, and logs in `mosquitto/` directory
+#### Mosquitto
+- **Protocol**: MQTT 3.1.1 and 5.0
+- **WebSocket**: Available on port 9001 for browser clients
 
-### Python API Service
-- **Port**: 5000
-- **Purpose**: RESTful API for IoT data management
+#### Python API Service
+- **Framework**: Flask
 - **Integration**: Connects to MQTT broker for real-time data
 
-### MinIO
-- **Ports**: 9010 (API), 9011 (Console)
-- **Purpose**: S3-compatible object storage
-- **Persistence**: Docker volume `minio_data`
+#### MinIO
+- **API**: S3-compatible REST API on port 9010
+- **Console**: Web interface on port 9011
 
 ## API Endpoints
 
 The Python API Service exposes the following endpoints:
 
-### GET /
-Health check endpoint.
-```bash
-curl http://localhost:5000/
-```
-**Response**: `{"message": "Aeroponik IoT API is running!"}`
-
-### GET /status
-Service status and MQTT broker information.
-```bash
-curl http://localhost:5000/status
-```
-**Response**: `{"status": "running", "mqtt_broker": "mosquitto"}`
+| Method | Endpoint | Description | Example Request | Response |
+|--------|----------|-------------|----------------|----------|
+| `GET` | `/` | Health check endpoint | `curl http://localhost:5000/` | `{"message": "Aeroponik IoT API is running!"}` |
+| `GET` | `/status` | Service status and MQTT broker information | `curl http://localhost:5000/status` | `{"status": "running", "mqtt_broker": "mosquitto"}` |
 
 ## MQTT Integration
 
@@ -192,22 +194,41 @@ curl http://localhost:5000/status
 
 ```
 aeroponik/
-├── docker-compose.yml    # Docker Compose configuration
-├── .env                  # Environment variables (create this file)
-├── node-red-data/        # Node-RED data and configuration
-│   ├── flows.json        # Node-RED flow definitions
-│   ├── package.json      # Node-RED dependencies
-│   └── settings.js       # Node-RED configuration
-├── mosquitto/            # Mosquitto MQTT broker
-│   ├── config/           # Broker configuration
-│   ├── data/             # Persistent data
-│   └── log/              # Log files
-├── python/               # Python API service
-│   ├── app.py            # Main Flask application
-│   ├── requirements.txt  # Python dependencies
-│   └── Dockerfile        # Python service container
-└── README.md             # Project documentation
+├── docker-compose.yml          # Docker Compose configuration
+├── init_box_aeroponik.sql      # Database initialization script
+├── .env                        # Environment variables (create this file)
+├── .env.example                # Environment variables template
+├── .gitignore                  # Git ignore rules
+├── README.md                   # Project documentation
+├── TODO.md                     # Project tasks and progress
+├── node-red-data/              # Node-RED data and configuration
+│   ├── flows.json              # Node-RED flow definitions
+│   ├── package.json            # Node-RED dependencies
+│   ├── settings.js             # Node-RED configuration
+│   └── lib/                    # Node-RED custom libraries
+├── mosquitto/                  # Mosquitto MQTT broker
+│   ├── config/
+│   │   └── mosquitto.conf      # Broker configuration
+│   ├── data/                   # Persistent data
+│   └── log/                    # Log files
+├── python/                     # Python API service
+│   ├── app.py                  # Main Flask application
+│   ├── requirements.txt        # Python dependencies
+│   ├── Dockerfile              # Python service container
+│   └── app/                    # Application modules
+└── .git/                       # Git repository data
 ```
+
+### Key Files Description
+
+| File/Directory | Purpose |
+|----------------|---------|
+| `docker-compose.yml` | Multi-service container orchestration |
+| `init_box_aeroponik.sql` | Database table creation script |
+| `.env` | Environment variables for services |
+| `node-red-data/` | Node-RED flows and configuration |
+| `mosquitto/` | MQTT broker configuration and data |
+| `python/` | Flask API service source code |
 
 ## Troubleshooting
 
@@ -219,10 +240,16 @@ aeroponik/
 
 ### Useful Commands
 
-- View running containers: `docker ps`
-- Stop all services: `docker-compose down`
-- Restart with rebuild: `docker-compose up --build -d`
-- View specific service logs: `docker-compose logs <service-name>`
+| Command | Description |
+|---------|-------------|
+| `docker ps` | View running containers |
+| `docker-compose down` | Stop all services |
+| `docker-compose up -d` | Start all services in background |
+| `docker-compose up --build -d` | Start with rebuild of images |
+| `docker-compose logs <service-name>` | View logs for specific service |
+| `docker-compose logs` | View logs for all services |
+| `docker-compose restart <service-name>` | Restart specific service |
+| `docker-compose exec <service-name> bash` | Access container shell |
 
 ## Contributing
 
