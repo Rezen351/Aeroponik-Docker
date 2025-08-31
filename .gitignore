@@ -6,6 +6,7 @@ node-red-data/.config.runtime.json.backup
 node-red-data/.config.users.json.backup
 node-red-data/.flows.json.backup
 node-red-data/flows_cred.json
+node-red-data/.npm
 
 # Mosquitto
 /mosquitto/data/
