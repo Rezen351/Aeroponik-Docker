@@ -82,6 +82,58 @@ The system comprises the following core components:
    - MinIO Console: [http://localhost:9011](http://localhost:9011)
    - Python API: [http://localhost:5000](http://localhost:5000)
 
+## Database Setup
+
+### Aeroponik Data Table
+
+The project includes a MariaDB table for storing aeroponik sensor data. The table `box_aeroponik` is automatically created during database initialization.
+
+#### Table Structure
+```sql
+CREATE TABLE `box_aeroponik` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `box` tinyint(4) NOT NULL,
+  `temp1` float DEFAULT NULL,
+  `temp2` float DEFAULT NULL,
+  `temp3` float DEFAULT NULL,
+  `hum1` float DEFAULT NULL,
+  `hum2` float DEFAULT NULL,
+  `ec` float DEFAULT NULL,
+  `ph` float DEFAULT NULL,
+  `lv` tinyint(4) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+#### Manual Table Creation (if needed)
+If you need to recreate or modify the table:
+
+1. **Access the MariaDB container**:
+   ```bash
+   docker-compose exec mariadb mysql -u root -p
+   ```
+
+2. **Execute the SQL script**:
+   ```bash
+  docker-compose exec mariadb sh -c "mysql -u root -pnodered nodered < /tmp/init_box_aeroponik.sql"
+   ```
+
+3. **Verify table creation**:
+   ```bash
+   docker-compose exec mariadb mysql -u root -p -e "USE nodered; SHOW TABLES; DESCRIBE box_aeroponik;"
+   ```
+
+#### Table Fields Description
+- `id`: Auto-incrementing primary key
+- `box`: Box identifier (1-255)
+- `temp1`, `temp2`, `temp3`: Temperature sensors (°C)
+- `hum1`, `hum2`: Humidity sensors (%)
+- `ec`: Electrical conductivity (μS/cm)
+- `ph`: pH level
+- `lv`: Liquid level sensor
+- `time`: Timestamp of data collection
+
 ## Services
 
 ### Node-RED

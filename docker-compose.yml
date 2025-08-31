@@ -9,6 +9,7 @@ services:
       - "1881:1880"
     volumes:
       - ./node-red-data:/data
+      - /etc/localtime:/etc/localtime:ro
     devices:
       - "/dev/ttyUSB0:/dev/ttyUSB0"
     group_add:
@@ -33,6 +34,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
+      - ./init_box_aeroponik.sql:/docker-entrypoint-initdb.d/init_box_aeroponik.sql
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - "3308:3306"
     networks:
@@ -50,6 +53,7 @@ services:
       - ./mosquitto/config:/mosquitto/config
       - ./mosquitto/data:/mosquitto/data
       - ./mosquitto/log:/mosquitto/log
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - iot-net
 
@@ -69,6 +73,7 @@ services:
       - mosquitto
     volumes:
       - ./python:/app
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - iot-net
 
@@ -87,7 +92,22 @@ services:
       MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD}
     volumes:
       - minio_data:/data
+      - /etc/localtime:/etc/localtime:ro
     command: server /data --console-address ":9001"
+    networks:
+      - iot-net
+
+  # 6. Adminer Service (Database Management)
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mariadb
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - iot-net
 

@@ -26,7 +26,7 @@ client.loop_start()
 
 @app.route('/')
 def home():
-    return jsonify({"message": "is running"})
+    return jsonify({"message": "API is running"})
 
 @app.route('/status')
 def status():
