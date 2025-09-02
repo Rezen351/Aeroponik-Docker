@@ -427,29 +427,6 @@
             }
         }
     },
-    "node-red-node-serialport": {
-        "name": "node-red-node-serialport",
-        "version": "2.0.3",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "serialport": {
-                "name": "serialport",
-                "types": [
-                    "serial in",
-                    "serial out",
-                    "serial request",
-                    "serial-port",
-                    "serial control"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-node-serialport",
-                "file": "/data/node_modules/node-red-node-serialport/25-serial.js"
-            }
-        }
-    },
     "node-red-dashboard": {
         "name": "node-red-dashboard",
         "version": "3.6.6",
@@ -994,6 +971,48 @@
             }
         }
     },
+    "node-red-node-serialport": {
+        "name": "node-red-node-serialport",
+        "version": "2.0.3",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "serialport": {
+                "name": "serialport",
+                "types": [
+                    "serial in",
+                    "serial out",
+                    "serial request",
+                    "serial-port",
+                    "serial control"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-node-serialport",
+                "file": "/data/node_modules/node-red-node-serialport/25-serial.js"
+            }
+        }
+    },
+    "node-red-node-ui-table": {
+        "name": "node-red-node-ui-table",
+        "version": "0.4.5",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "ui_table": {
+                "name": "ui_table",
+                "types": [
+                    "ui_table"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-node-ui-table",
+                "file": "/data/node_modules/node-red-node-ui-table/node.js"
+            }
+        }
+    },
     "node-red-node-mysql": {
         "name": "node-red-node-mysql",
         "version": "2.0.0",
@@ -1011,82 +1030,6 @@
                 "user": false,
                 "module": "node-red-node-mysql",
                 "file": "/data/node_modules/node-red-node-mysql/68-mysql.js"
-            }
-        }
-    },
-    "node-red-contrib-ui-svg": {
-        "name": "node-red-contrib-ui-svg",
-        "version": "2.3.3",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "ui_svg_graphics": {
-                "name": "ui_svg_graphics",
-                "types": [
-                    "ui_svg_graphics"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-ui-svg",
-                "file": "/data/node_modules/node-red-contrib-ui-svg/svg_graphics.js"
-            }
-        }
-    },
-    "node-red-contrib-fs": {
-        "name": "node-red-contrib-fs",
-        "version": "1.4.1",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "File Lister": {
-                "name": "File Lister",
-                "types": [
-                    "fs-file-lister"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-fs",
-                "file": "/data/node_modules/node-red-contrib-fs/fs/fs-file-lister.js"
-            }
-        }
-    },
-    "node-red-contrib-ui-etable": {
-        "name": "node-red-contrib-ui-etable",
-        "version": "4.6.3",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "etable": {
-                "name": "etable",
-                "types": [
-                    "ui_etable"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-ui-etable",
-                "file": "/data/node_modules/node-red-contrib-ui-etable/etable.js"
-            }
-        }
-    },
-    "node-red-node-base64": {
-        "name": "node-red-node-base64",
-        "version": "1.0.0",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "base64": {
-                "name": "base64",
-                "types": [
-                    "base64"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-node-base64",
-                "file": "/data/node_modules/node-red-node-base64/70-base64.js"
             }
         }
     },
@@ -1127,6 +1070,249 @@
                 "user": false,
                 "module": "node-red-node-email",
                 "file": "/data/node_modules/node-red-node-email/61-email.js"
+            }
+        }
+    },
+    "node-red-node-base64": {
+        "name": "node-red-node-base64",
+        "version": "1.0.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "base64": {
+                "name": "base64",
+                "types": [
+                    "base64"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-node-base64",
+                "file": "/data/node_modules/node-red-node-base64/70-base64.js"
+            }
+        }
+    },
+    "node-red-contrib-filesystem": {
+        "name": "node-red-contrib-filesystem",
+        "version": "1.0.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "filesystem": {
+                "name": "filesystem",
+                "types": [
+                    "fs-copy-move",
+                    "fs-remove",
+                    "fs-mkdir",
+                    "fs-list",
+                    "fs-stats",
+                    "fs-access"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-filesystem",
+                "file": "/data/node_modules/node-red-contrib-filesystem/filesystem.js"
+            }
+        }
+    },
+    "node-red-contrib-tableify": {
+        "name": "node-red-contrib-tableify",
+        "version": "0.0.2",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "mailx": {
+                "name": "mailx",
+                "types": [
+                    "tableify"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-tableify",
+                "file": "/data/node_modules/node-red-contrib-tableify/tableify/tableify.js"
+            }
+        }
+    },
+    "node-red-contrib-ui-etable": {
+        "name": "node-red-contrib-ui-etable",
+        "version": "4.6.3",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "etable": {
+                "name": "etable",
+                "types": [
+                    "ui_etable"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-ui-etable",
+                "file": "/data/node_modules/node-red-contrib-ui-etable/etable.js"
+            }
+        }
+    },
+    "node-red-contrib-fs-ops": {
+        "name": "node-red-contrib-fs-ops",
+        "version": "1.6.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "fs-ops": {
+                "name": "fs-ops",
+                "types": [
+                    "fs-ops-move",
+                    "fs-ops-copy",
+                    "fs-ops-delete",
+                    "fs-ops-access",
+                    "fs-ops-size",
+                    "fs-ops-stats",
+                    "fs-ops-link",
+                    "fs-ops-type",
+                    "fs-ops-dir",
+                    "fs-ops-mkdir",
+                    "fs-ops-mktmpdir"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-fs-ops",
+                "file": "/data/node_modules/node-red-contrib-fs-ops/fs-ops.js"
+            }
+        }
+    },
+    "node-red-contrib-fs-extra": {
+        "name": "node-red-contrib-fs-extra",
+        "version": "1.0.1",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "fs-exta-copy": {
+                "name": "fs-exta-copy",
+                "types": [
+                    "fs-extra-copy"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-fs-extra",
+                "file": "/data/node_modules/node-red-contrib-fs-extra/node.js"
+            }
+        }
+    },
+    "node-red-contrib-gtfs-feed": {
+        "name": "node-red-contrib-gtfs-feed",
+        "version": "0.0.2",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "gtfs-feed": {
+                "name": "gtfs-feed",
+                "types": [
+                    "gtfs-feed"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-gtfs-feed",
+                "file": "/data/node_modules/node-red-contrib-gtfs-feed/node-red-contrib-gtfs-feed.js"
+            }
+        }
+    },
+    "node-red-contrib-ui-svg": {
+        "name": "node-red-contrib-ui-svg",
+        "version": "2.3.3",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "ui_svg_graphics": {
+                "name": "ui_svg_graphics",
+                "types": [
+                    "ui_svg_graphics"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-ui-svg",
+                "file": "/data/node_modules/node-red-contrib-ui-svg/svg_graphics.js"
+            }
+        }
+    },
+    "node-red-node-ui-list": {
+        "name": "node-red-node-ui-list",
+        "version": "0.3.6",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "ui_list": {
+                "name": "ui_list",
+                "types": [
+                    "ui_list"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-node-ui-list",
+                "file": "/data/node_modules/node-red-node-ui-list/ui_list.js"
+            }
+        }
+    },
+    "node-red-contrib-fs": {
+        "name": "node-red-contrib-fs",
+        "version": "1.4.1",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "File Lister": {
+                "name": "File Lister",
+                "types": [
+                    "fs-file-lister"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-fs",
+                "file": "/data/node_modules/node-red-contrib-fs/fs/fs-file-lister.js"
+            }
+        }
+    },
+    "node-red-contrib-multipart-stream-decoder": {
+        "name": "node-red-contrib-multipart-stream-decoder",
+        "version": "1.0.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "multipart-decoder": {
+                "name": "multipart-decoder",
+                "types": [
+                    "multipart-decoder"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-multipart-stream-decoder",
+                "file": "/data/node_modules/node-red-contrib-multipart-stream-decoder/multipart_decoder.js"
+            }
+        }
+    },
+    "node-red-contrib-image-output": {
+        "name": "node-red-contrib-image-output",
+        "version": "0.6.4",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "image": {
+                "name": "image",
+                "types": [
+                    "image"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-image-output",
+                "file": "/data/node_modules/node-red-contrib-image-output/image/image.js"
             }
         }
     }

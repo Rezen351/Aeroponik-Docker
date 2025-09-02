@@ -10,8 +10,8 @@ services:
     volumes:
       - ./node-red-data:/data
       - /etc/localtime:/etc/localtime:ro
-    devices:
-      - "/dev/ttyUSB0:/dev/ttyUSB0"
+#    devices:
+#      - "/dev/ttyUSB0:/dev/ttyUSB0"
     group_add:
       - "dialout"
     depends_on:
@@ -67,10 +67,14 @@ services:
       - "5000:5000" # Port untuk API
     environment:
       - MQTT_BROKER=mosquitto
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
       - FLASK_APP=app.py
       - FLASK_ENV=development
+      - FLASK_DEBUG=1
     depends_on:
       - mosquitto
+      - minio
     volumes:
       - ./python:/app
       - /etc/localtime:/etc/localtime:ro

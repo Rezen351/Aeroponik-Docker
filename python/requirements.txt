@@ -1,2 +1,5 @@
 Flask==2.3.3
 paho-mqtt==1.6.1
+numpy==1.26.4
+opencv-python==4.8.1.78
+minio==7.1.14

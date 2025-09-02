@@ -6,7 +6,7 @@
                 "view-store-position": false,
                 "view-show-grid": true,
                 "view-snap-grid": true,
-                "view-grid-size": 20,
+                "view-grid-size": "20",
                 "view-node-status": true,
                 "view-node-info-icon": true,
                 "view-node-show-label": true,
@@ -24,7 +24,7 @@
             }
         },
         "debug": {
-            "filter": "filterAll",
+            "filter": "filterSelected",
             "filteredNodes": [
                 "2256ffd95b624497",
                 "ef99038cc9ddd7e4",
@@ -38,12 +38,13 @@
                 "1849fafb8c04bffb",
                 "e8e3247579a33e3d",
                 "96f2cccab9b15da9",
+                "j6k7l8m9.n0o1p2",
                 "54cd7e1011c7f5ad",
                 "9fc54c781e7a3194",
                 "91428107f6e89fc4",
+                "9581799d4a78ba3c",
                 "07348fd76bbddc30",
-                "5fe772a46159dbf6",
-                "j6k7l8m9.n0o1p2"
+                "5fe772a46159dbf6"
             ]
         }
     }
