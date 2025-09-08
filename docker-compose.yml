@@ -10,8 +10,8 @@ services:
     volumes:
       - ./node-red-data:/data
       - /etc/localtime:/etc/localtime:ro
-#    devices:
-#      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
     group_add:
       - "dialout"
     depends_on:
