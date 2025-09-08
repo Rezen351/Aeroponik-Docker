@@ -1110,26 +1110,6 @@
         }
     },
     {
-        "id": "7c13ea7fe40f0fe6",
-        "type": "serial-port",
-        "name": "/dev/ttyUSB0",
-        "serialport": "/dev/ttyUSB0",
-        "serialbaud": "9600",
-        "databits": 8,
-        "parity": "none",
-        "stopbits": 1,
-        "waitfor": "",
-        "dtr": "none",
-        "rts": "none",
-        "cts": "none",
-        "dsr": "none",
-        "newline": "\\n",
-        "bin": "false",
-        "out": "char",
-        "addchar": "",
-        "responsetimeout": 10000
-    },
-    {
         "id": "da033ba0d3cdcfd7",
         "type": "ui_group",
         "name": "View",
@@ -1623,16 +1603,6 @@
         "height": 1
     },
     {
-        "id": "ed68c0c06ce1d893",
-        "type": "ui_group",
-        "name": "Ekspor Data",
-        "tab": "b89535bea98e40d1",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
         "id": "b89535bea98e40d1",
         "type": "ui_tab",
         "name": "Download",
@@ -1650,6 +1620,66 @@
         "width": 3,
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "ed68c0c06ce1d893",
+        "type": "ui_group",
+        "name": "Ekspor Data",
+        "tab": "b89535bea98e40d1",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "7a9b197f15f487d9",
+        "type": "ui_spacer",
+        "z": "1a1b1c1d1e1f1g1h",
+        "name": "spacer",
+        "group": "da54263f65557fd0",
+        "order": 7,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "7c13ea7fe40f0fe6",
+        "type": "serial-port",
+        "name": "Receive",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "9600",
+        "databits": 8,
+        "parity": "none",
+        "stopbits": 1,
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "\\n",
+        "responsetimeout": 10000
+    },
+    {
+        "id": "8e05c5f1f0f5750e",
+        "type": "serial-port",
+        "name": "Send",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "57600",
+        "databits": 8,
+        "parity": "none",
+        "stopbits": 1,
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "",
+        "bin": "false",
+        "out": "char",
+        "addchar": "\\n",
+        "responsetimeout": 10000
     },
     {
         "id": "84b452cbb6af28aa",
@@ -3039,7 +3069,7 @@
         "z": "1a1b1c1d1e1f1g1h",
         "g": "74c15ca3613cd339",
         "name": "Generate <img> Tag",
-        "func": "const base64 = msg.payload.toString('base64');\n//msg.payload = `<div class=\"image-container\"><img src=\"data:image/jpeg;base64,${base64}\" /></div>`;\n//msg.payload = `<div class=\"image-container\"><img src=\"https://picsum.photos/720\" /></div>`;\n\nreturn msg;\n",
+        "func": "const base64 = msg.payload.toString('base64');\nmsg.payload = `<div class=\"image-container\"><img src=\"data:image/jpeg;base64,${base64}\" /></div>`;\n//msg.payload = `<div class=\"image-container\"><img src=\"https://picsum.photos/720\" /></div>`;\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3063,8 +3093,8 @@
         "name": "Image Display",
         "order": 3,
         "width": 12,
-        "height": 8,
-        "format": "<div ng-bind-html=\"msg.payload\"></div>\n<style>\n.image-container {\nwidth: 100%; /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\nheight: 300px; /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\nborder: 1px solid #ccc;\noverflow: hidden; /* Opsional, untuk merapikan */\n}\n\n.image-container img {\nwidth: 100%;\nheight: 100%;\nobject-fit: cover; /* Opsi terpenting ada di sini */\n}\n\n</style>\n\n",
+        "height": 9,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>\n<style>\n.image-container {\nwidth: 100%; /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\nheight: 400px; /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\nborder: 1px solid #ccc;\noverflow: hidden; /* Opsional, untuk merapikan */\n}\n\n.image-container img {\nwidth: 100%;\nheight: 100%;\nobject-fit: cover; /* Opsi terpenting ada di sini */\n}\n\n</style>\n\n",
         "storeOutMessages": true,
         "fwdInMessages": false,
         "resendOnRefresh": true,
@@ -3268,8 +3298,8 @@
         "name": "",
         "order": 1,
         "width": 18,
-        "height": 8,
-        "format": "<div class=\"image-container\" style=\"text-align: center\">\n  <img id=\"stream\" ng-src=\"{{'data:image/jpeg;base64,' + msg.payload}}\" style=\"max-width: 100%; border: 1px solid #ccc;\">\n</div>\n\n<style>\n  .image-container {\n    width: 100%;\n    /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\n    height: 300px;\n    /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\n    border: 1px solid #ccc;\n    overflow: hidden;\n    /* Opsional, untuk merapikan */\n  }\n\n  .image-container img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    /* Opsi terpenting ada di sini */\n  }\n</style>\n\nreturn msg;",
+        "height": 13,
+        "format": "<div class=\"image-container\" style=\"text-align: center\">\n  <img id=\"stream\" ng-src=\"{{'data:image/jpeg;base64,' + msg.payload}}\" style=\"max-width: 100%; border: 1px solid #ccc;\">\n</div>\n\n<style>\n  .image-container {\n    width: 100%;\n    /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\n    height: 720px;\n    /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\n    border: 1px solid #ccc;\n    overflow: hidden;\n    /* Opsional, untuk merapikan */\n  }\n\n  .image-container img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    /* Opsi terpenting ada di sini */\n  }\n</style>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -3310,7 +3340,7 @@
         "z": "1a1b1c1d1e1f1g1h",
         "g": "5d38ddf977d613cd",
         "name": "to stream",
-        "func": "// Convert binary JPEG buffer to base64\nmsg.payload = msg.payload.toString('base64');\nreturn msg;\n",
+        "func": "// Convert binary JPEG buffer to base64\nmsg.payload = msg.payload.toString('base64');\nreturn msg\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3477,7 +3507,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "600",
+        "repeat": "28800",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
@@ -4928,7 +4958,7 @@
         "name": "",
         "property": "payload",
         "action": "",
-        "pretty": true,
+        "pretty": false,
         "x": 370,
         "y": 940,
         "wires": [
@@ -4960,9 +4990,9 @@
         "type": "serial in",
         "z": "12e507726147fca4",
         "g": "36f5bdf79c97c76f",
-        "name": "Dari Arduino",
+        "name": "Receive",
         "serial": "7c13ea7fe40f0fe6",
-        "x": 190,
+        "x": 180,
         "y": 940,
         "wires": [
             [
@@ -10275,9 +10305,7 @@
         "x": 350,
         "y": 560,
         "wires": [
-            [
-                "6b3fd6afe24895fe"
-            ]
+            []
         ]
     },
     {
@@ -10294,19 +10322,18 @@
                 "vt": "str"
             }
         ],
-        "repeat": "1",
+        "repeat": "3",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 150,
-        "y": 540,
+        "x": 190,
+        "y": 560,
         "wires": [
             [
-                "0480273a65c8d1c7",
-                "a91348bd484486a4"
+                "0480273a65c8d1c7"
             ]
         ]
     },
@@ -10326,23 +10353,6 @@
         "x": 700,
         "y": 500,
         "wires": []
-    },
-    {
-        "id": "6b3fd6afe24895fe",
-        "type": "json",
-        "z": "aca42d5c811e4c56",
-        "name": "",
-        "property": "payload",
-        "action": "str",
-        "pretty": true,
-        "x": 510,
-        "y": 560,
-        "wires": [
-            [
-                "9581799d4a78ba3c",
-                "0cb78b92b82759d8"
-            ]
-        ]
     },
     {
         "id": "0cb78b92b82759d8",
@@ -10412,6 +10422,92 @@
             [
                 "9581799d4a78ba3c"
             ]
+        ]
+    },
+    {
+        "id": "ecfa46343f95a93f",
+        "type": "inject",
+        "z": "aca42d5c811e4c56",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{ \"pump1\": 0, \"pump2\": 0, \"pump3\": 0}",
+        "payloadType": "str",
+        "x": 330,
+        "y": 660,
+        "wires": [
+            [
+                "38bbb76b22fa8372"
+            ]
+        ]
+    },
+    {
+        "id": "13f4173c230f135f",
+        "type": "inject",
+        "z": "aca42d5c811e4c56",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{ \"pump1\": 1, \"pump2\": 1, \"pump3\": 1}",
+        "payloadType": "str",
+        "x": 450,
+        "y": 740,
+        "wires": [
+            [
+                "38bbb76b22fa8372"
+            ]
+        ]
+    },
+    {
+        "id": "38bbb76b22fa8372",
+        "type": "serial request",
+        "z": "aca42d5c811e4c56",
+        "name": "",
+        "serial": "8e05c5f1f0f5750e",
+        "x": 610,
+        "y": 640,
+        "wires": [
+            [
+                "9581799d4a78ba3c"
+            ]
+        ]
+    },
+    {
+        "id": "6deca31a33fa6715",
+        "type": "json",
+        "z": "aca42d5c811e4c56",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 560,
+        "wires": [
+            []
         ]
     },
     {

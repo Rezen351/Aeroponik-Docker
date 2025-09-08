@@ -8,11 +8,12 @@ from minio.error import S3Error
 from flask import Flask, jsonify, Response, render_template, request
 from mqtt import setup_mqtt, MQTT_BROKER
 
-# --- PENGATURAN KAMERA UNTUK 3 CC
+# --- PENGATURAN KAMERA UNTUK 4 CCTV ---
 CCTV_URLS = [
     os.getenv('CCTV_URL_1', 'rtsp://admin:Admin_TF24!@192.168.1.100:554/stream1'),
     os.getenv('CCTV_URL_2', 'rtsp://admin:Admin_TF24!@192.168.1.101:554/stream1'),
-    os.getenv('CCTV_URL_3', 'rtsp://admin:Admin_TF24!@192.168.1.103:554/stream1')
+    os.getenv('CCTV_URL_3', 'rtsp://admin:Admin_TF24!@192.168.1.102:554/stream1'),
+    os.getenv('CCTV_URL_4', 'rtsp://admin:Admin_TF24!@192.168.1.103:554/stream1')
 ]
 
 # MinIO configuration from environment variables
@@ -50,7 +51,7 @@ def home():
 @app.route('/video_feed/<int:camera_id>')
 def video_feed(camera_id):
     """Endpoint yang menghasilkan stream video MJPEG untuk kamera tertentu."""
-    if camera_id < 1 or camera_id > 3:
+    if camera_id < 1 or camera_id > 4:
         return "Invalid camera ID", 400
     return Response(generate_frames(camera_id - 1),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -92,7 +93,7 @@ def upload_image_to_minio(camera_index, frame):
 def upload():
     """Endpoint to upload current frames from all cameras to MinIO."""
     results = []
-    for idx in range(3):
+    for idx in range(4):
         camera = cameras[idx]
         if camera is None or not camera.isOpened():
             print(f"Kamera {idx+1} tidak terhubung, mencoba inisialisasi ulang untuk upload...")
@@ -143,7 +144,7 @@ def get_image(filename):
 @app.route('/image-list/<int:camera_id>')
 def get_image_list(camera_id):
     """Endpoint to list images for a specific camera from MinIO."""
-    if camera_id < 1 or camera_id > 3:
+    if camera_id < 1 or camera_id > 4:
         return jsonify({"error": "Invalid camera ID"}), 400
 
     prefix = f"camera_{camera_id}_"

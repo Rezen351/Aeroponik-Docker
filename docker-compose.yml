@@ -10,8 +10,8 @@ services:
     volumes:
       - ./node-red-data:/data
       - /etc/localtime:/etc/localtime:ro
-#    devices:
-#      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
     group_add:
       - "dialout"
     depends_on:
@@ -47,7 +47,7 @@ services:
     container_name: mosquitto
     restart: unless-stopped
     ports:
-      - "1883:1883" # Port MQTT standar
+      - "1884:1883" # Port MQTT standar
       - "9001:9001" # Port MQTT over WebSockets
     volumes:
       - ./mosquitto/config:/mosquitto/config

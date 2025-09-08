@@ -2,14 +2,15 @@ import cv2
 import time
 import os
 
-# --- PENGATURAN KAMERA UNTUK 3 CCTV ---
+# --- PENGATURAN KAMERA UNTUK 4 CCTV ---
 CCTV_URLS = [
     os.getenv('CCTV_URL_1', 'rtsp://admin:Admin_TF24!@192.168.1.100:554/stream1'),
     os.getenv('CCTV_URL_2', 'rtsp://admin:Admin_TF24!@192.168.1.101:554/stream1'),
-    os.getenv('CCTV_URL_3', 'rtsp://admin:Admin_TF24!@192.168.1.103:554/stream1')
+    os.getenv('CCTV_URL_3', 'rtsp://admin:Admin_TF24!@192.168.1.102:554/stream1'),
+    os.getenv('CCTV_URL_4', 'rtsp://admin:Admin_TF24!@192.168.1.103:554/stream1')
 ]
 
-cameras = [None] * 3
+cameras = [None] * 4
 def initialize_camera(index):
     """Inisialisasi kamera berdasarkan indeks."""
     global cameras
@@ -68,5 +69,5 @@ def generate_frames(camera_index):
 
 def initialize_all_cameras():
     """Inisialisasi semua kamera."""
-    for i in range(3):
+    for i in range(4):
         initialize_camera(i)

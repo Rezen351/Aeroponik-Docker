@@ -1,4 +1,7 @@
-# TODO List for Creating README.md and Updating .gitignore
+# TODO: Fix Invalid Camera ID Error
 
-- [x] Create README.md with project overview, setup instructions, and usage details
-- [x] Update .gitignore with appropriate ignores for Python, Docker, Node-RED, logs, and data files
+- [x] Update camera.py: Change initialize_all_cameras to initialize all 4 cameras (range(4)) - Already correct
+- [x] Update comment in camera.py to reflect 4 cameras instead of 3
+- [x] Update app.py: Fix validation in /video_feed endpoint to allow camera_id up to 4
+- [x] Update app.py: Fix validation in /image-list endpoint to allow camera_id up to 4
+- [x] Update comment in app.py to reflect 4 cameras instead of 3
