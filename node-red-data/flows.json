@@ -621,7 +621,6 @@
             "941aad5c8a456dca",
             "85d8d20b8060c8c9",
             "1d2015977c68b701",
-            "019bb336a7d7c6d2",
             "41cebfc6587a2a97",
             "79fe199f0314c80f",
             "47dc12fc7febf461",
@@ -629,7 +628,9 @@
             "627f162c676bc8bc",
             "c9d0e1f2.g3h4i5",
             "j6k7l8m9.n0o1p2",
-            "v2w3x4y5.z6a7b8"
+            "v2w3x4y5.z6a7b8",
+            "e5d5324a536dab4a",
+            "21655d538199683c"
         ],
         "x": 94,
         "y": 879,
@@ -778,7 +779,6 @@
         },
         "nodes": [
             "7a7e93c7af8039b8",
-            "9147524a2db0782f",
             "8db25162552abe96",
             "06e018c7f64b7464",
             "8d1d8ccc779ae8d4",
@@ -3892,8 +3892,8 @@
         "name": "",
         "order": 1,
         "width": 18,
-        "height": 8,
-        "format": "<div class=\"image-container\" style=\"text-align: center\">\n  <img id=\"stream\" ng-src=\"{{'data:image/jpeg;base64,' + msg.payload}}\" style=\"max-width: 100%; border: 1px solid #ccc;\">\n</div>\n\n<style>\n  .image-container {\n    width: 100%;\n    /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\n    height: 300px;\n    /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\n    border: 1px solid #ccc;\n    overflow: hidden;\n    /* Opsional, untuk merapikan */\n  }\n\n  .image-container img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    /* Opsi terpenting ada di sini */\n  }\n</style>",
+        "height": "12",
+        "format": "<div class=\"image-container\" style=\"text-align: center\">\n  <img id=\"stream\" ng-src=\"{{'data:image/jpeg;base64,' + msg.payload}}\" style=\"max-width: 100%; border: 1px solid #ccc;\">\n</div>\n\n<style>\n  .image-container {\n    width: 100%;\n    /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\n    height: 650px;\n    /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\n    border: 1px solid #ccc;\n    overflow: hidden;\n    /* Opsional, untuk merapikan */\n  }\n\n  .image-container img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    /* Opsi terpenting ada di sini */\n  }\n</style>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -4251,13 +4251,10 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 1040,
+        "x": 600,
+        "y": 980,
         "wires": [
-            [
-                "627f162c676bc8bc",
-                "79fe199f0314c80f"
-            ]
+            []
         ]
     },
     {
@@ -4277,7 +4274,7 @@
         ],
         "repeat": "60",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": "0.1",
         "topic": "",
         "payload": "",
@@ -4286,7 +4283,7 @@
         "y": 1040,
         "wires": [
             [
-                "425b838991d338ae"
+                "21655d538199683c"
             ]
         ]
     },
@@ -4593,23 +4590,6 @@
         "wires": [
             [
                 "291d710a67852109"
-            ]
-        ]
-    },
-    {
-        "id": "019bb336a7d7c6d2",
-        "type": "json",
-        "z": "12e507726147fca4",
-        "g": "36f5bdf79c97c76f",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 630,
-        "y": 980,
-        "wires": [
-            [
-                "1d2015977c68b701"
             ]
         ]
     },
@@ -5557,7 +5537,7 @@
         "y": 940,
         "wires": [
             [
-                "j6k7l8m9.n0o1p2"
+                "e5d5324a536dab4a"
             ]
         ]
     },
@@ -5575,7 +5555,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 590,
+        "x": 790,
         "y": 940,
         "wires": []
     },
@@ -5591,6 +5571,48 @@
         "wires": [
             [
                 "c9d0e1f2.g3h4i5"
+            ]
+        ]
+    },
+    {
+        "id": "e5d5324a536dab4a",
+        "type": "function",
+        "z": "12e507726147fca4",
+        "g": "36f5bdf79c97c76f",
+        "name": "To Global",
+        "func": "// Ambil array sensor dari payload\nlet sensors = msg.payload.s;\n\n// Pastikan array valid\nif (!Array.isArray(sensors)) {\n    node.error(\"Invalid sensor data format\");\n    return null;\n}\n\n// Loop setiap item dalam array\nsensors.forEach(sensor => {\n    let id = sensor.i;\n    let r = sensor.r;\n\n    switch (id) {\n        case \"s_atas\":\n            if (r.t !== undefined) global.set(\"temp1\", r.t);\n            if (r.h !== undefined) global.set(\"hum1\", r.h);\n            break;\n\n        case \"s_bawah\":\n            if (r.t !== undefined) global.set(\"temp2\", r.t);\n            if (r.h !== undefined) global.set(\"hum2\", r.h);\n            break;\n\n        case \"wt_a\":\n            if (r.t !== undefined) global.set(\"temp3\", r.t);\n            if (r.p !== undefined) global.set(\"ph1\", r.p);\n            if (r.e !== undefined) global.set(\"ec1\", r.e);\n            break;\n            \n        case \"wl1\":\n            if (r.l !== undefined) global.set(\"lv1\", r.l);\n            break;\n\n        case \"wl2\":\n            if (r.l !== undefined) global.set(\"lv2\", r.l);\n            break;\n    }\n});\n\nreturn msg; // lanjutkan jika perlu ke node lain\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 940,
+        "wires": [
+            [
+                "j6k7l8m9.n0o1p2"
+            ]
+        ]
+    },
+    {
+        "id": "21655d538199683c",
+        "type": "function",
+        "z": "12e507726147fca4",
+        "g": "36f5bdf79c97c76f",
+        "name": "Box1",
+        "func": "// Ambil global variables\nvar temp1 = global.get(\"temp1\");\nvar temp2 = global.get(\"temp2\");\nvar temp3 = global.get(\"temp3\");\nvar hum1 = global.get(\"hum1\");\nvar hum2 = global.get(\"hum2\");\nvar ec1 = global.get(\"ec1\");\nvar ph1 = global.get(\"ph1\");\nvar lv1 = global.get(\"lv1\");\n\n// Validasi: jangan kirim kalau ada yang undefined/null\nif ([temp1, temp2, temp3, hum1, hum2, ec1, ph1, lv1].some(v => v === undefined || v === null)) {\n    node.warn(\"Data tidak lengkap. Gagal menyimpan ke database.\");\n    return null;\n}\n\n// Buat query hanya untuk box 1\nvar query = \"INSERT INTO box_aeroponik (box, temp1, temp2, temp3, hum1, hum2, ec, ph, lv) \" +\n            \"VALUES (1, '\" + temp1 + \"', '\" + temp2 + \"', '\" + temp3 + \"', '\" +\n            hum1 + \"', '\" + hum2 + \"', '\" + ec1 + \"', '\" + ph1 + \"', '\" + lv1 + \"')\";\n\nmsg.topic = query;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1040,
+        "wires": [
+            [
+                "627f162c676bc8bc"
             ]
         ]
     },
@@ -5780,7 +5802,7 @@
         "z": "5dce11f8d7fa82a2",
         "g": "30b2fd5aba35cff5",
         "name": "Generate SQL Query",
-        "func": "// --- Konfigurasi ---\nconst MAX_ROWS_LIMIT = 75; // Batas aman maksimal data yang dikembalikan\n\n// 1. Ambil Variabel dari Global Context\nconst interval = global.get(\"dataInterval\") || \"m\";\nconst timeRange = global.get(\"dateTime\") || \"1d\";\nconst box = global.get(\"box\") || \"box1\";\n\n// 2. Tentukan Format Grup Waktu untuk SQL\nlet groupByFormat = '';\n// [BARU] Menambahkan opsi untuk 'w' (week) dan 'mo' (month) dari dropdown Anda\nswitch (interval) {\n    case 's': groupByFormat = '%Y-%m-%d %H:%i:%s'; break;\n    case 'h': groupByFormat = '%Y-%m-%d %H:00:00'; break;\n    case 'd': groupByFormat = '%Y-%m-%d'; break;\n    case 'w': groupByFormat = '%Y-%u'; break; // Grup per minggu\n    case 'm':\n    default: groupByFormat = '%Y-%m-%d %H:%i:00'; break;\n}\n\n// 3. Siapkan Parameter untuk klausa WHERE\nconst boxNumber = parseInt(box.replace('box', ''));\n\n// [BARU] Logika yang lebih baik untuk menghitung tanggal mulai berdasarkan '1d', '1w', '1m', '1y'\nlet startDate = new Date();\nconst rangeNum = parseInt(timeRange); // Mengambil angka (misal: 1)\nconst rangeUnit = timeRange.slice(-1); // Mengambil unit (d, w, m, y)\n\nswitch(rangeUnit) {\n    case 'd': startDate.setDate(startDate.getDate() - rangeNum); break;\n    case 'w': startDate.setDate(startDate.getDate() - (rangeNum * 7)); break;\n    case 'm': startDate.setMonth(startDate.getMonth() - rangeNum); break;\n    case 'y': startDate.setFullYear(startDate.getFullYear() - rangeNum); break;\n    default: startDate.setDate(startDate.getDate() - 1); // Default ke 1 hari\n}\nconst formattedStartDate = startDate.toISOString().slice(0, 19).replace('T', ' ');\n\n// 4. [DIPERBARUI] Buat Query SQL dengan Subquery untuk Urutan yang Benar\nconst query = `\n    SELECT * FROM (\n        -- Query Bagian Dalam: Ambil 75 grup data TERBARU\n        SELECT \n            MIN(time) AS time,\n            ROUND(AVG(temp1), 2) AS temp1,\n            ROUND(AVG(temp2), 2) AS temp2,\n            ROUND(AVG(temp3), 2) AS temp3,\n            ROUND(AVG(hum1), 2) AS hum1,\n            ROUND(AVG(hum2), 2) AS hum2,\n            ROUND(AVG(ec), 2) AS ec,\n            ROUND(AVG(ph), 2) AS ph\n        FROM \n            box_aeroponik\n        WHERE \n            box = ? AND time >= ?\n        GROUP BY \n            DATE_FORMAT(time, '${groupByFormat}')\n        ORDER BY \n            time DESC\n        LIMIT \n            ${MAX_ROWS_LIMIT}\n    ) AS recent_data\n    -- Query Bagian Luar: Urutkan kembali data dari LAMA ke BARU\n    ORDER BY \n        time ASC;\n`;\n\n// 5. Set msg.topic dan msg.payload untuk node mysql\nmsg.topic = query;\nmsg.payload = [boxNumber, formattedStartDate];\n\nnode.warn(`Generated Query for interval '${interval}' and time range '${timeRange}'`);\n\nreturn msg;",
+        "func": "// --- Konfigurasi ---\nconst MAX_ROWS_LIMIT = 75; // Batas aman maksimal data yang dikembalikan\n\n// 1. Ambil Variabel dari Global Context\nconst interval = global.get(\"dataInterval\") || \"m\";\nconst timeRange = global.get(\"dateTime\") || \"1d\";\nconst box = global.get(\"box\") || \"box1\";\n\n// 2. Tentukan Format Grup Waktu untuk SQL\nlet groupByFormat = '';\n// [BARU] Menambahkan opsi untuk 'w' (week) dan 'mo' (month) dari dropdown Anda\nswitch (interval) {\n    case 's': groupByFormat = '%Y-%m-%d %H:%i:%s'; break;\n    case 'h': groupByFormat = '%Y-%m-%d %H:00:00'; break;\n    case 'd': groupByFormat = '%Y-%m-%d'; break;\n    case 'w': groupByFormat = '%Y-%u'; break; // Grup per minggu\n    case 'm':\n    default: groupByFormat = '%Y-%m-%d %H:%i:00'; break;\n}\n\n// 3. Siapkan Parameter untuk klausa WHERE\nconst boxNumber = parseInt(box.replace('box', ''));\n\n// [BARU] Logika yang lebih baik untuk menghitung tanggal mulai berdasarkan '1d', '1w', '1m', '1y'\nlet startDate = new Date();\nconst rangeNum = parseInt(timeRange); // Mengambil angka (misal: 1)\nconst rangeUnit = timeRange.slice(-1); // Mengambil unit (d, w, m, y)\n\nswitch(rangeUnit) {\n    case 'd': startDate.setDate(startDate.getDate() - rangeNum); break;\n    case 'w': startDate.setDate(startDate.getDate() - (rangeNum * 7)); break;\n    case 'm': startDate.setMonth(startDate.getMonth() - rangeNum); break;\n    case 'y': startDate.setFullYear(startDate.getFullYear() - rangeNum); break;\n    default: startDate.setDate(startDate.getDate() - 1); // Default ke 1 hari\n}\nconst formattedStartDate = startDate.toISOString().slice(0, 19).replace('T', ' ');\n\n// 4. [DIPERBARUI] Buat Query SQL dengan Subquery untuk Urutan yang Benar\nconst query = `\n    SELECT * FROM (\n        -- Query Bagian Dalam: Ambil 75 grup data TERBARU\n        SELECT \n            MIN(time) AS time,\n            ROUND(AVG(temp1), 2) AS temp1,\n            ROUND(AVG(temp2), 2) AS temp2,\n            ROUND(AVG(temp3), 2) AS temp3,\n            ROUND(AVG(hum1), 2) AS hum1,\n            ROUND(AVG(hum2), 2) AS hum2,\n            ROUND(AVG(ec), 2) AS ec,\n            ROUND(AVG(ph), 2) AS ph\n        FROM \n            box_aeroponik\n        WHERE \n            box = ? AND time >= ?\n        GROUP BY \n            DATE_FORMAT(time, '${groupByFormat}')\n        ORDER BY \n            time DESC\n        LIMIT \n            ${MAX_ROWS_LIMIT}\n    ) AS recent_data\n    -- Query Bagian Luar: Urutkan kembali data dari LAMA ke BARU\n    ORDER BY \n        time ASC;\n`;\n\n// 5. Set msg.topic dan msg.payload untuk node mysql\nmsg.topic = query;\nmsg.payload = [boxNumber, formattedStartDate];\n\n// node.warn(`Generated Query for interval '${interval}' and time range '${timeRange}'`);\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -10899,7 +10921,9 @@
         "x": 350,
         "y": 560,
         "wires": [
-            []
+            [
+                "38bbb76b22fa8372"
+            ]
         ]
     },
     {
@@ -10916,7 +10940,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "10",
+        "repeat": "5",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -10944,25 +10968,9 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "6b3fd6afe24895fe",
-        "type": "json",
-        "z": "aca42d5c811e4c56",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 510,
+        "x": 700,
         "y": 560,
-        "wires": [
-            [
-                "9742f47cfad2af5a"
-            ]
-        ]
+        "wires": []
     },
     {
         "id": "fbd307e5217671db",
@@ -11023,103 +11031,17 @@
         ]
     },
     {
-        "id": "9742f47cfad2af5a",
-        "type": "serial request",
-        "z": "aca42d5c811e4c56",
-        "name": "",
-        "serial": "7c13ea7fe40f0fe6",
-        "x": 670,
-        "y": 560,
-        "wires": [
-            [
-                "9581799d4a78ba3c"
-            ]
-        ]
-    },
-    {
-        "id": "ecfa46343f95a93f",
-        "type": "inject",
-        "z": "aca42d5c811e4c56",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{ \"pump1\": 0, \"pump2\": 0, \"pump3\": 0}",
-        "payloadType": "str",
-        "x": 330,
-        "y": 660,
-        "wires": [
-            [
-                "38bbb76b22fa8372"
-            ]
-        ]
-    },
-    {
-        "id": "13f4173c230f135f",
-        "type": "inject",
-        "z": "aca42d5c811e4c56",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{ \"pump1\": 1, \"pump2\": 1, \"pump3\": 1}",
-        "payloadType": "str",
-        "x": 450,
-        "y": 740,
-        "wires": [
-            [
-                "38bbb76b22fa8372"
-            ]
-        ]
-    },
-    {
         "id": "38bbb76b22fa8372",
         "type": "serial request",
         "z": "aca42d5c811e4c56",
         "name": "",
-        "serial": "8e05c5f1f0f5750e",
-        "x": 610,
-        "y": 640,
+        "serial": "7c13ea7fe40f0fe6",
+        "x": 530,
+        "y": 560,
         "wires": [
             [
                 "9581799d4a78ba3c"
             ]
-        ]
-    },
-    {
-        "id": "6deca31a33fa6715",
-        "type": "json",
-        "z": "aca42d5c811e4c56",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 510,
-        "y": 560,
-        "wires": [
-            []
         ]
     },
     {
@@ -13005,22 +12927,6 @@
         ]
     },
     {
-        "id": "9147524a2db0782f",
-        "type": "ui-svg",
-        "z": "412bb0db11a61560",
-        "g": "8c3c80366fb2105d",
-        "name": "",
-        "group": "b8e278a66751ef2c",
-        "width": "8",
-        "height": "10",
-        "order": 1,
-        "x": 910,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "8db25162552abe96",
         "type": "ui-button",
         "z": "412bb0db11a61560",
@@ -14861,7 +14767,6 @@
         "y": 360,
         "wires": [
             [
-                "9147524a2db0782f",
                 "4b9a6a2abf4c29c4"
             ]
         ]
