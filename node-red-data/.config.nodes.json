@@ -1315,5 +1315,138 @@
                 "file": "/data/node_modules/node-red-node-ui-table/node.js"
             }
         }
+    },
+    "@bartbutenaers/node-red-dashboard-2-ui-svg": {
+        "name": "@bartbutenaers/node-red-dashboard-2-ui-svg",
+        "version": "1.0.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "ui-svg": {
+                "name": "ui-svg",
+                "types": [
+                    "ui-svg"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "@bartbutenaers/node-red-dashboard-2-ui-svg",
+                "file": "/data/node_modules/@bartbutenaers/node-red-dashboard-2-ui-svg/nodes/ui-svg.js"
+            }
+        }
+    },
+    "@cgjgh/node-red-dashboard-2-ui-scheduler": {
+        "name": "@cgjgh/node-red-dashboard-2-ui-scheduler",
+        "version": "3.3.4",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "ui-scheduler": {
+                "name": "ui-scheduler",
+                "types": [
+                    "ui-scheduler"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "@cgjgh/node-red-dashboard-2-ui-scheduler",
+                "file": "/data/node_modules/@cgjgh/node-red-dashboard-2-ui-scheduler/nodes/ui-scheduler.js"
+            }
+        }
+    },
+    "@cgjgh/node-red-dashboard-2-ui-state-timeline": {
+        "name": "@cgjgh/node-red-dashboard-2-ui-state-timeline",
+        "version": "0.0.11",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "ui-state-timeline": {
+                "name": "ui-state-timeline",
+                "types": [
+                    "ui-state-timeline"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "@cgjgh/node-red-dashboard-2-ui-state-timeline",
+                "file": "/data/node_modules/@cgjgh/node-red-dashboard-2-ui-state-timeline/nodes/ui-state-timeline.js"
+            }
+        }
+    },
+    "@flowfuse/node-red-dashboard-2-ui-iframe": {
+        "name": "@flowfuse/node-red-dashboard-2-ui-iframe",
+        "version": "1.1.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "ui-iframe": {
+                "name": "ui-iframe",
+                "types": [
+                    "ui-iframe"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "@flowfuse/node-red-dashboard-2-ui-iframe",
+                "file": "/data/node_modules/@flowfuse/node-red-dashboard-2-ui-iframe/nodes/ui-iframe.js"
+            }
+        }
+    },
+    "@omrid01/node-red-dashboard-2-table-tabulator": {
+        "name": "@omrid01/node-red-dashboard-2-table-tabulator",
+        "version": "0.8.2",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "ui-tabulator": {
+                "name": "ui-tabulator",
+                "types": [
+                    "ui-tabulator"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "@omrid01/node-red-dashboard-2-table-tabulator",
+                "file": "/data/node_modules/@omrid01/node-red-dashboard-2-table-tabulator/nodes/ui-tabulator.js"
+            }
+        }
+    },
+    "@revolutionpi/node-red-dashboard-2-hmi": {
+        "name": "@revolutionpi/node-red-dashboard-2-hmi",
+        "version": "0.0.4",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "hmi-push-button": {
+                "name": "hmi-push-button",
+                "types": [
+                    "hmi-push-button"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "@revolutionpi/node-red-dashboard-2-hmi",
+                "file": "/data/node_modules/@revolutionpi/node-red-dashboard-2-hmi/nodes/hmi-push-button.js"
+            }
+        }
+    },
+    "@sumit_shinde_84/node-red-dashboard-2-ui-webcam": {
+        "name": "@sumit_shinde_84/node-red-dashboard-2-ui-webcam",
+        "version": "1.0.5",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "ui-webcam": {
+                "name": "ui-webcam",
+                "types": [
+                    "ui-webcam"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "@sumit_shinde_84/node-red-dashboard-2-ui-webcam",
+                "file": "/data/node_modules/@sumit_shinde_84/node-red-dashboard-2-ui-webcam/nodes/ui-webcam.js"
+            }
+        }
     }
 }
