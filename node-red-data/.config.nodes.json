@@ -429,7 +429,7 @@
     },
     "@flowfuse/node-red-dashboard": {
         "name": "@flowfuse/node-red-dashboard",
-        "version": "1.26.0",
+        "version": "1.29.0",
         "local": true,
         "user": true,
         "nodes": {
@@ -1216,7 +1216,7 @@
     },
     "node-red-node-email": {
         "name": "node-red-node-email",
-        "version": "3.1.0",
+        "version": "5.0.0",
         "local": true,
         "user": true,
         "nodes": {
@@ -1485,25 +1485,6 @@
                 "user": false,
                 "module": "node-red-contrib-influxdb3",
                 "file": "/data/node_modules/node-red-contrib-influxdb3/influxdb3.js"
-            }
-        }
-    },
-    "node-red-contrib-rtsp-client": {
-        "name": "node-red-contrib-rtsp-client",
-        "version": "0.1.3",
-        "local": true,
-        "user": false,
-        "nodes": {
-            "rtsp-client": {
-                "name": "rtsp-client",
-                "types": [
-                    "rtsp-client"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-rtsp-client",
-                "file": "/data/node_modules/node-red-contrib-rtsp-client/nodes/rtsp-client/rtsp-client.js"
             }
         }
     },
