@@ -1,25 +1,11 @@
 [
     {
-        "id": "a03b98cdab95a8bc",
-        "type": "tab",
-        "label": "YOLO Height CM Pump",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "90388eb5adb410ac",
         "type": "tab",
         "label": "Home New",
         "disabled": false,
         "info": "",
         "env": []
-    },
-    {
-        "id": "1a1b1c1d1e1f1g1h",
-        "type": "tab",
-        "label": "Camera-Alif",
-        "disabled": false,
-        "info": ""
     },
     {
         "id": "12e507726147fca4",
@@ -46,12 +32,11 @@
         "env": []
     },
     {
-        "id": "b67113f05889da3a",
+        "id": "1a1b1c1d1e1f1g1h",
         "type": "tab",
-        "label": "Pupuk",
+        "label": "Camera-Alif",
         "disabled": false,
-        "info": "",
-        "env": []
+        "info": ""
     },
     {
         "id": "aca42d5c811e4c56",
@@ -81,9 +66,24 @@
         "id": "412bb0db11a61560",
         "type": "tab",
         "label": "Dashboard 2",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
+    },
+    {
+        "id": "b67113f05889da3a",
+        "type": "tab",
+        "label": "Pupuk",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a03b98cdab95a8bc",
+        "type": "tab",
+        "label": "YOLO Height CM Pump",
+        "disabled": true,
+        "info": ""
     },
     {
         "id": "48db94e21480b93f",
@@ -630,12 +630,14 @@
             "j6k7l8m9.n0o1p2",
             "v2w3x4y5.z6a7b8",
             "e5d5324a536dab4a",
-            "21655d538199683c"
+            "21655d538199683c",
+            "738c1e93e7f1e757",
+            "14c7fd4e1e62f560"
         ],
         "x": 94,
-        "y": 879,
+        "y": 819,
         "w": 1132,
-        "h": 282
+        "h": 322
     },
     {
         "id": "c117ba4debb42672",
@@ -672,12 +674,19 @@
         "nodes": [
             "39572a2fc5f0895d",
             "ca4a5250ea116c8f",
-            "7cf38005e5845ce7"
+            "7cf38005e5845ce7",
+            "721d1c020fd18ce8",
+            "7edd5558424fa787",
+            "fc13d7a2539d0e02",
+            "580b3fa8e9cb3bb9",
+            "84089cd7390bd171",
+            "201280cca311acb4",
+            "9692197c4d122455"
         ],
         "x": 34,
-        "y": 659,
-        "w": 712,
-        "h": 82
+        "y": 679,
+        "w": 832,
+        "h": 262
     },
     {
         "id": "5d38ddf977d613cd",
@@ -898,6 +907,44 @@
         "h": 242
     },
     {
+        "id": "fc8c341b08d2f86e",
+        "type": "group",
+        "z": "aca42d5c811e4c56",
+        "name": "InfluxDB",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "e2555634e6549f7b",
+            "a7877adf0237da9b",
+            "e753bd86278c106c",
+            "56524b5003f98ffc"
+        ],
+        "x": 74,
+        "y": 659,
+        "w": 852,
+        "h": 82
+    },
+    {
+        "id": "c20963a527cf4aab",
+        "type": "group",
+        "z": "aca42d5c811e4c56",
+        "name": "POST DATA",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "36b8af3c16853acb",
+            "d46e6ecf37cd56fa",
+            "15e161c40015209a",
+            "15f20cdc54b2ca33"
+        ],
+        "x": 74,
+        "y": 779,
+        "w": 832,
+        "h": 82
+    },
+    {
         "id": "ee6e9259a5f72e9d",
         "type": "mqtt-broker",
         "name": "",
@@ -963,7 +1010,7 @@
         "id": "mqtt-broker-config",
         "type": "mqtt-broker",
         "name": "Local MQTT",
-        "broker": "localhost",
+        "broker": "mosquitto",
         "port": "1883",
         "clientid": "",
         "autoConnect": true,
@@ -2276,271 +2323,27 @@
         "disabled": "false"
     },
     {
-        "id": "84b452cbb6af28aa",
-        "type": "mqtt in",
-        "z": "a03b98cdab95a8bc",
-        "name": "Detection Results In",
-        "topic": "detection/heights",
-        "qos": "2",
-        "datatype": "json",
-        "broker": "mqtt-broker-config",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 130,
-        "y": 80,
-        "wires": [
-            [
-                "0afba2d8a9652baa",
-                "ef99038cc9ddd7e4",
-                "88dc15a42bf36175"
-            ]
-        ]
+        "id": "c0d7f1fb143bef1a",
+        "type": "influxdb3-config",
+        "name": "almuzky",
+        "host": "https://influxdb.almuzky.my.id/",
+        "database": "database"
     },
     {
-        "id": "0afba2d8a9652baa",
-        "type": "json",
-        "z": "a03b98cdab95a8bc",
-        "name": "Parse JSON",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 320,
-        "y": 80,
-        "wires": [
-            [
-                "e7def614596be0e9"
-            ]
-        ]
-    },
-    {
-        "id": "e7def614596be0e9",
-        "type": "function",
-        "z": "a03b98cdab95a8bc",
-        "name": "Extract height_cm",
-        "func": "// Grab height_cm of the first detection in array\ntry {\n    const detection = msg.payload.detections[0];\n    msg.payload = detection.height_cm;\n    return msg;\n} catch (err) {\n    node.error(\"Invalid detection format\", msg);\n    return null;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 540,
-        "y": 80,
-        "wires": [
-            [
-                "16eed8fce517c524"
-            ]
-        ]
-    },
-    {
-        "id": "16eed8fce517c524",
-        "type": "switch",
-        "z": "a03b98cdab95a8bc",
-        "name": "Height > 24 cm?",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "24",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 750,
-        "y": 80,
-        "wires": [
-            [
-                "41e699a169aca9bc"
-            ]
-        ]
-    },
-    {
-        "id": "41e699a169aca9bc",
-        "type": "change",
-        "z": "a03b98cdab95a8bc",
-        "name": "Set Payload: on",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "on",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 960,
-        "y": 80,
-        "wires": [
-            [
-                "a8b3404554be8a44",
-                "2256ffd95b624497"
-            ]
-        ]
-    },
-    {
-        "id": "a8b3404554be8a44",
-        "type": "mqtt out",
-        "z": "a03b98cdab95a8bc",
-        "name": "Pump Trigger",
-        "topic": "pump/control",
-        "qos": "",
-        "retain": "",
-        "broker": "mqtt-broker-config",
-        "x": 1140,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "2256ffd95b624497",
-        "type": "debug",
-        "z": "a03b98cdab95a8bc",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1160,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "ef99038cc9ddd7e4",
-        "type": "debug",
-        "z": "a03b98cdab95a8bc",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 320,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "88dc15a42bf36175",
-        "type": "function",
-        "z": "a03b98cdab95a8bc",
-        "name": "Calculate Average Height",
-        "func": "// Check if the payload and detections array exist\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0 && msg.payload[0].detections && Array.isArray(msg.payload[0].detections)) {\n\n    let totalHeight = 0;\n    let numberOfDetections = 0;\n\n    // The detections array is inside the first element of the payload array\n    const detections = msg.payload[0].detections;\n\n    // Iterate through each detection to sum up heights\n    for (let i = 0; i < detections.length; i++) {\n        // Check if the height_cm property exists\n        if (typeof detections[i].height_cm === 'number') {\n            totalHeight += detections[i].height_cm;\n            numberOfDetections++;\n        }\n    }\n\n    let averageHeight = 0;\n    if (numberOfDetections > 0) {\n        averageHeight = totalHeight / numberOfDetections;\n    }\n\n    // Store the calculated average height in the message object\n    // We can put it in msg.payload, or a new property like msg.averageHeight\n    msg.payload = averageHeight; // Overwriting payload with the average\n\n    // Optionally, you might keep the original message and add the average as a new property\n    // msg.averageHeight = averageHeight;\n\n    // Send the modified message to the next node\n    return msg;\n\n} else {\n    // If payload or detections are not as expected, you might want to log a warning\n    // or simply not send a message downstream.\n    node.warn(\"Received message payload structure is not as expected or no detections found.\");\n    // Return null to stop the message from going to the next node\n    return null;\n}",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 390,
-        "y": 240,
-        "wires": [
-            [
-                "4df2fe24b6504dd6"
-            ]
-        ]
-    },
-    {
-        "id": "4df2fe24b6504dd6",
-        "type": "switch",
-        "z": "a03b98cdab95a8bc",
-        "name": "Check Average > Threshold",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "20",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 680,
-        "y": 240,
-        "wires": [
-            [
-                "670cf2b91623bf63"
-            ],
-            [
-                "5c08312f8b8b382a"
-            ]
-        ]
-    },
-    {
-        "id": "9545a98ca4ed109b",
-        "type": "mqtt out",
-        "z": "a03b98cdab95a8bc",
-        "name": "Pump Control MQTT",
-        "topic": "pump/control",
-        "qos": "1",
-        "retain": "true",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "mqtt-broker-config",
-        "x": 1180,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "670cf2b91623bf63",
-        "type": "change",
-        "z": "a03b98cdab95a8bc",
-        "name": "Set ON Payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "ON",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 240,
-        "wires": [
-            [
-                "9545a98ca4ed109b"
-            ]
-        ]
-    },
-    {
-        "id": "5c08312f8b8b382a",
-        "type": "debug",
-        "z": "a03b98cdab95a8bc",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 920,
-        "y": 300,
-        "wires": []
+        "id": "ee3ebfbf3738a766",
+        "type": "aws-s3-config",
+        "configname": "Supabase",
+        "endpoint": "https://studio.almuzky.my.id/storage/v1",
+        "endpointType": "str",
+        "forcepathstyle": true,
+        "skiptlsverify": true,
+        "useIamRole": false,
+        "accessKeyId": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q",
+        "accessKeyIdType": "str",
+        "secretAccessKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q",
+        "secretAccessKeyType": "str",
+        "region": "eu-west-1",
+        "regionType": "str"
     },
     {
         "id": "0ca1bd226920d175",
@@ -3580,616 +3383,6 @@
         "wires": []
     },
     {
-        "id": "http_get_images",
-        "type": "http request",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "GET /list-images/1",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 490,
-        "y": 200,
-        "wires": [
-            [
-                "parse_image_list"
-            ]
-        ]
-    },
-    {
-        "id": "parse_image_list",
-        "type": "function",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "Format for Table",
-        "func": "const images = msg.payload.images || msg.payload;\n\nif (!Array.isArray(images)) {\n    node.error(\"Payload bukan array. Cek respons API.\", msg);\n    return null;\n}\n\nimages.sort((a, b) => new Date(b.last_modified) - new Date(a.last_modified));\n\nmsg.payload = images.map(item => {\n    const date = new Date(item.last_modified);\n\n    // Format waktu 24 jam (untuk kolom \"last_modified\")\n    const timeOnly = date.toLocaleTimeString('id-ID', { hour12: false });\n\n    // Format waktu 12 jam (untuk title)\n    const timeTitle = date.toLocaleTimeString('en-US', {\n        hour: '2-digit',\n        minute: '2-digit',\n        hour12: true\n    });\n\n    const day = date.getDate(); // misal 25\n    const month = date.getMonth() + 1; // misal 7\n\n    // Ekstrak nomor kamera dari filename\n    const match = item.filename.match(/^camera_(\\d+)_/);\n    const cameraNumber = match ? match[1] : \"X\";\n\n    const title = `C${cameraNumber} - ${day}/${month} - ${timeTitle}`;\n\n    return {\n        filename: item.filename,\n        last_modified: timeOnly,\n        size_kb: (item.size / 1024).toFixed(1) + \" KB\",\n        title: title\n    };\n});\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 2,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 700,
-        "y": 200,
-        "wires": [
-            [
-                "ui_table_images"
-            ]
-        ]
-    },
-    {
-        "id": "ui_table_images",
-        "type": "ui_table",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "group": "da54263f65557fd0",
-        "name": "Table",
-        "order": 2,
-        "width": 6,
-        "height": 8,
-        "columns": [
-            {
-                "field": "title",
-                "title": "Name",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 1,
-        "cts": true,
-        "x": 890,
-        "y": 200,
-        "wires": [
-            [
-                "ed7ae3e413ecc7fa"
-            ]
-        ]
-    },
-    {
-        "id": "generate_image_tag",
-        "type": "function",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "Generate <img> Tag",
-        "func": "const base64 = msg.payload.toString('base64');\nmsg.payload = `<div class=\"image-container\"><img src=\"data:image/jpeg;base64,${base64}\" /></div>`;\n//msg.payload = `<div class=\"image-container\"><img src=\"https://picsum.photos/720\" /></div>`;\nreturn msg",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 700,
-        "y": 280,
-        "wires": [
-            [
-                "ui_image_viewer"
-            ]
-        ]
-    },
-    {
-        "id": "ui_image_viewer",
-        "type": "ui_template",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "group": "da54263f65557fd0",
-        "name": "Image Display",
-        "order": 3,
-        "width": 12,
-        "height": 9,
-        "format": "<div ng-bind-html=\"msg.payload\"></div>\n<style>\n.image-container {\nwidth: 100%; /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\nheight: 400px; /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\nborder: 1px solid #ccc;\noverflow: hidden; /* Opsional, untuk merapikan */\n}\n\n.image-container img {\nwidth: 100%;\nheight: 100%;\nobject-fit: cover; /* Opsi terpenting ada di sini */\n}\n\n</style>\n\n",
-        "storeOutMessages": true,
-        "fwdInMessages": false,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 920,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5e20b319ec4356cd",
-        "type": "http request",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "GET /list-images/1",
-        "method": "GET",
-        "ret": "bin",
-        "paytoqs": "ignore",
-        "url": "",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 490,
-        "y": 280,
-        "wires": [
-            [
-                "generate_image_tag"
-            ]
-        ]
-    },
-    {
-        "id": "ed7ae3e413ecc7fa",
-        "type": "function",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "Pre-HTTP",
-        "func": "// Ambil filename dari payload\nconst filename = msg.payload.filename || msg.payload;  // bisa object atau string\n\n// Cek kalau tidak ada filename\nif (!filename) {\n    node.error(\"Filename tidak ditemukan dalam payload.\", msg);\n    return null;\n}\n\n// Bangun URL berdasarkan filename\nmsg.method = \"GET\";\nmsg.url = `http://python:5000/image/${filename}`;\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 280,
-        "wires": [
-            [
-                "5e20b319ec4356cd"
-            ]
-        ]
-    },
-    {
-        "id": "cb10d4aa05a9daae",
-        "type": "ui_button",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "",
-        "group": "da54263f65557fd0",
-        "order": 1,
-        "width": 2,
-        "height": 2,
-        "passthru": false,
-        "label": "CAM 1",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "1",
-        "payloadType": "str",
-        "topic": "payload",
-        "topicType": "msg",
-        "x": 110,
-        "y": 100,
-        "wires": [
-            [
-                "0d297e49f9c23056"
-            ]
-        ]
-    },
-    {
-        "id": "23a814de8cbbe989",
-        "type": "ui_button",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "",
-        "group": "da54263f65557fd0",
-        "order": 4,
-        "width": 2,
-        "height": 2,
-        "passthru": false,
-        "label": "CAM 2",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2",
-        "payloadType": "str",
-        "topic": "payload",
-        "topicType": "msg",
-        "x": 110,
-        "y": 160,
-        "wires": [
-            [
-                "0d297e49f9c23056"
-            ]
-        ]
-    },
-    {
-        "id": "b91cb9b26debfa0d",
-        "type": "ui_button",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "",
-        "group": "da54263f65557fd0",
-        "order": 5,
-        "width": 2,
-        "height": 2,
-        "passthru": false,
-        "label": "CAM 3",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "3",
-        "payloadType": "str",
-        "topic": "payload",
-        "topicType": "msg",
-        "x": 110,
-        "y": 220,
-        "wires": [
-            [
-                "0d297e49f9c23056"
-            ]
-        ]
-    },
-    {
-        "id": "41753e3740e8d8a2",
-        "type": "ui_button",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "",
-        "group": "da54263f65557fd0",
-        "order": 6,
-        "width": 2,
-        "height": 2,
-        "passthru": false,
-        "label": "CAM 4",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "4",
-        "payloadType": "str",
-        "topic": "payload",
-        "topicType": "msg",
-        "x": 110,
-        "y": 280,
-        "wires": [
-            [
-                "0d297e49f9c23056"
-            ]
-        ]
-    },
-    {
-        "id": "0d297e49f9c23056",
-        "type": "function",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "Pre-HTTP",
-        "func": "const id = msg.payload\n\n// Bangun URL berdasarkan filename\nmsg.method = \"GET\";\nmsg.url = `http://python:5000/image-list/${id}`;\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 200,
-        "wires": [
-            [
-                "http_get_images"
-            ]
-        ]
-    },
-    {
-        "id": "13ee73bb991fd6b3",
-        "type": "ui_template",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "5d38ddf977d613cd",
-        "group": "cfe4364cb2e71871",
-        "name": "",
-        "order": 1,
-        "width": 18,
-        "height": "12",
-        "format": "<div class=\"image-container\" style=\"text-align: center\">\n  <img id=\"stream\" ng-src=\"{{'data:image/jpeg;base64,' + msg.payload}}\" style=\"max-width: 100%; border: 1px solid #ccc;\">\n</div>\n\n<style>\n  .image-container {\n    width: 100%;\n    /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\n    height: 650px;\n    /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\n    border: 1px solid #ccc;\n    overflow: hidden;\n    /* Opsional, untuk merapikan */\n  }\n\n  .image-container img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    /* Opsi terpenting ada di sini */\n  }\n</style>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 800,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "multipart_decoder",
-        "type": "multipart-decoder",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "5d38ddf977d613cd",
-        "name": "MJPEG Decoder",
-        "ret": "bin",
-        "url": "",
-        "tls": "",
-        "authentication": "none",
-        "delay": 0,
-        "maximum": 1000000,
-        "blockSize": 1,
-        "enableLog": "off",
-        "x": 460,
-        "y": 500,
-        "wires": [
-            [
-                "4b01021e77b2d98d"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "4b01021e77b2d98d",
-        "type": "function",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "5d38ddf977d613cd",
-        "name": "to stream",
-        "func": "// Convert binary JPEG buffer to base64\nmsg.payload = msg.payload.toString('base64');\nreturn msg\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 640,
-        "y": 500,
-        "wires": [
-            [
-                "13ee73bb991fd6b3"
-            ]
-        ]
-    },
-    {
-        "id": "17f2ce60063ab4c8",
-        "type": "ui_button",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "5d38ddf977d613cd",
-        "name": "",
-        "group": "0d8e14ee3e595e70",
-        "order": 1,
-        "width": 2,
-        "height": 2,
-        "passthru": false,
-        "label": "CAM 1",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "1",
-        "payloadType": "str",
-        "topic": "payload",
-        "topicType": "msg",
-        "x": 110,
-        "y": 420,
-        "wires": [
-            [
-                "69a113402c0d245c"
-            ]
-        ]
-    },
-    {
-        "id": "f6df333a94bf0f3c",
-        "type": "ui_button",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "5d38ddf977d613cd",
-        "name": "",
-        "group": "0d8e14ee3e595e70",
-        "order": 2,
-        "width": 2,
-        "height": 2,
-        "passthru": false,
-        "label": "CAM 2",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "2",
-        "payloadType": "str",
-        "topic": "payload",
-        "topicType": "msg",
-        "x": 110,
-        "y": 480,
-        "wires": [
-            [
-                "69a113402c0d245c"
-            ]
-        ]
-    },
-    {
-        "id": "c4ee04ac4884da0d",
-        "type": "ui_button",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "5d38ddf977d613cd",
-        "name": "",
-        "group": "0d8e14ee3e595e70",
-        "order": 3,
-        "width": 2,
-        "height": 2,
-        "passthru": false,
-        "label": "CAM 3",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "3",
-        "payloadType": "str",
-        "topic": "payload",
-        "topicType": "msg",
-        "x": 110,
-        "y": 540,
-        "wires": [
-            [
-                "69a113402c0d245c"
-            ]
-        ]
-    },
-    {
-        "id": "b4eab696001276b5",
-        "type": "ui_button",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "5d38ddf977d613cd",
-        "name": "",
-        "group": "0d8e14ee3e595e70",
-        "order": 4,
-        "width": 2,
-        "height": 2,
-        "passthru": false,
-        "label": "CAM 4",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "4",
-        "payloadType": "str",
-        "topic": "payload",
-        "topicType": "msg",
-        "x": 110,
-        "y": 600,
-        "wires": [
-            [
-                "69a113402c0d245c"
-            ]
-        ]
-    },
-    {
-        "id": "69a113402c0d245c",
-        "type": "function",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "5d38ddf977d613cd",
-        "name": "Pre-HTTP",
-        "func": "const id = msg.payload\n\n// Bangun URL berdasarkan filename\nmsg.method = \"GET\";\nmsg.url = `http://python:5000/video_feed/${id}`;\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 280,
-        "y": 500,
-        "wires": [
-            [
-                "multipart_decoder"
-            ]
-        ]
-    },
-    {
-        "id": "39572a2fc5f0895d",
-        "type": "inject",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "1e9c94dd73ea7c7f",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "28800",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 150,
-        "y": 700,
-        "wires": [
-            [
-                "ca4a5250ea116c8f"
-            ]
-        ]
-    },
-    {
-        "id": "ca4a5250ea116c8f",
-        "type": "http request",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "1e9c94dd73ea7c7f",
-        "name": "",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "http://python:5000/upload",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 370,
-        "y": 700,
-        "wires": [
-            [
-                "7cf38005e5845ce7"
-            ]
-        ]
-    },
-    {
-        "id": "7cf38005e5845ce7",
-        "type": "debug",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "1e9c94dd73ea7c7f",
-        "name": "HTTP REQUEST",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 610,
-        "y": 700,
-        "wires": []
-    },
-    {
-        "id": "ebaacd4c24219e15",
-        "type": "inject",
-        "z": "1a1b1c1d1e1f1g1h",
-        "g": "74c15ca3613cd339",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 710,
-        "y": 320,
-        "wires": [
-            [
-                "generate_image_tag"
-            ]
-        ]
-    },
-    {
         "id": "4f35cba2cb2b9c65",
         "type": "change",
         "z": "12e507726147fca4",
@@ -4621,8 +3814,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 680,
-        "y": 1120,
+        "x": 900,
+        "y": 1040,
         "wires": []
     },
     {
@@ -5555,8 +4748,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 790,
-        "y": 940,
+        "x": 730,
+        "y": 880,
         "wires": []
     },
     {
@@ -5587,7 +4780,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
+        "x": 560,
         "y": 940,
         "wires": [
             [
@@ -5613,6 +4806,49 @@
         "wires": [
             [
                 "627f162c676bc8bc"
+            ]
+        ]
+    },
+    {
+        "id": "738c1e93e7f1e757",
+        "type": "mqtt in",
+        "z": "12e507726147fca4",
+        "g": "36f5bdf79c97c76f",
+        "name": "",
+        "topic": "data",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "mqtt-broker-config",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 860,
+        "wires": [
+            [
+                "14c7fd4e1e62f560"
+            ]
+        ]
+    },
+    {
+        "id": "14c7fd4e1e62f560",
+        "type": "function",
+        "z": "12e507726147fca4",
+        "g": "36f5bdf79c97c76f",
+        "name": "To Global",
+        "func": "// Ambil objek payload\nlet data = msg.payload;\n\ntry {\n    // Pastikan payload berisi data yang diharapkan\n    if (!data || !data.sensors || !data.actuators) {\n        node.warn(\"Payload JSON tidak lengkap, 'sensors' atau 'actuators' tidak ditemukan.\");\n        return null; // Hentikan alur jika data tidak lengkap\n    }\n\n    let sensors = data.sensors;\n    let actuators = data.actuators;\n\n    // 1. Set Sensor CWT (Suhu & Kelembapan)\n    // Asumsi 'temp1' & 'hum1' berasal dari cwt[0]\n    if (sensors.cwt && sensors.cwt[0]) {\n        global.set(\"temp1\", sensors.cwt[0].temperature);\n        global.set(\"hum1\", sensors.cwt[0].humidity);\n    }\n    // Asumsi 'temp2' & 'hum2' berasal dari cwt[1]\n    if (sensors.cwt && sensors.cwt[1]) {\n        global.set(\"temp2\", sensors.cwt[1].temperature);\n        global.set(\"hum2\", sensors.cwt[1].humidity);\n    }\n\n    // 2. Set Sensor NPK (dan Kualitas Air)\n    if (sensors.npk) {\n        global.set(\"nitrogen\", sensors.npk.nitrogen);\n        global.set(\"phosphorus\", sensors.npk.phosphorus);\n        global.set(\"potassium\", sensors.npk.potassium);\n        \n        // Sesuai skema database Anda sebelumnya:\n        global.set(\"temp3\", sensors.npk.temperature); // Suhu air\n        global.set(\"ph1\", sensors.npk.ph);\n        global.set(\"ec1\", sensors.npk.ec);\n    }\n\n    // 3. Set Sensor Lasers\n    // Ini akan menyimpan sebagai 'laser1_status', 'laser2_status', dst.\n    if (sensors.lasers && Array.isArray(sensors.lasers)) {\n        sensors.lasers.forEach(laser => {\n            if (laser.id && laser.status !== undefined) {\n                // Membuat key dinamis, misal: \"laser1_status\"\n                global.set(laser.id + \"_status\", laser.status);\n            }\n        });\n    }\n\n    // 4. Set Sensor Water Level\n    // Sesuai skema database Anda sebelumnya: 'lv'\n    if (sensors.water_level && sensors.water_level.status !== undefined) {\n        global.set(\"lv1\", sensors.water_level.status);\n    }\n\n    // 5. Set Actuators\n    if (actuators.pump && actuators.pump.status !== undefined) {\n        // Ambil status numerik (misal: 1 atau 0)\n        let numericStatus = actuators.pump.status;\n\n        // Konversi 1 -> \"on\", selain itu -> \"off\"\n        let stringStatus = (numericStatus === 1) ? \"on\" : \"off\";\n\n        // Set variabel global dengan string \"on\" atau \"off\"\n        global.set(\"pump1\", stringStatus);\n    }\n\n    \n    if (actuators.solenoid_valve && actuators.solenoid_valve.status !== undefined) {\n        global.set(\"solenoid_valve\", actuators.solenoid_valve.status);\n    }\n    \n    // Secara opsional, teruskan pesan asli jika diperlukan\n    return msg;\n\n} catch (e) {\n    // Tangkap error jika struktur JSON salah\n    node.error(\"Gagal memproses JSON: \" + e.message, msg);\n    return null; // Hentikan alur\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 860,
+        "wires": [
+            [
+                "j6k7l8m9.n0o1p2"
             ]
         ]
     },
@@ -9998,572 +9234,775 @@
         ]
     },
     {
-        "id": "598ae280bc2e4bd4",
-        "type": "change",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"tab\":\"Setting\"}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 380,
-        "y": 100,
-        "wires": [
-            [
-                "a2a82d5c9cee80c5"
-            ]
-        ]
-    },
-    {
-        "id": "6c6371bc8c66c989",
-        "type": "change",
-        "z": "b67113f05889da3a",
-        "name": "Store settings",
-        "rules": [
-            {
-                "t": "set",
-                "p": "batasAtas",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 960,
-        "y": 400,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d81f49e54137cada",
-        "type": "change",
-        "z": "b67113f05889da3a",
-        "name": "Store settings",
-        "rules": [
-            {
-                "t": "set",
-                "p": "batasBawah",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 960,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "23a304930d57f368",
-        "type": "function",
-        "z": "b67113f05889da3a",
-        "name": "function 37",
-        "func": "msg.payload = global.get('batasAtas')\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 420,
-        "wires": [
-            [
-                "4cb201dbb5a30e8a"
-            ]
-        ]
-    },
-    {
-        "id": "970f1e9b9483637c",
-        "type": "inject",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 190,
-        "y": 420,
-        "wires": [
-            [
-                "23a304930d57f368"
-            ]
-        ]
-    },
-    {
-        "id": "f69e5fa92e42d275",
-        "type": "function",
-        "z": "b67113f05889da3a",
-        "name": "function 38",
-        "func": "msg.payload = global.get('batasBawah')\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 540,
-        "wires": [
-            [
-                "aec49bf1b5900b88"
-            ]
-        ]
-    },
-    {
-        "id": "4f25bdf30555da2c",
-        "type": "inject",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 190,
-        "y": 540,
-        "wires": [
-            [
-                "f69e5fa92e42d275"
-            ]
-        ]
-    },
-    {
-        "id": "e04a2b326a31d748",
-        "type": "switch",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "property": "startSystem",
-        "propertyType": "global",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 930,
-        "y": 480,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "d4b4d0b3b43afb81",
-        "type": "change",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "box",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 380,
+        "id": "http_get_images",
+        "type": "http request",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
+        "name": "GET /list-images/1",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 490,
         "y": 200,
         "wires": [
             [
-                "e9223f9c7df3a9de"
+                "parse_image_list"
             ]
         ]
     },
     {
-        "id": "e9223f9c7df3a9de",
-        "type": "link out",
-        "z": "b67113f05889da3a",
-        "name": "statusBox",
-        "mode": "link",
-        "links": [
-            "b8ddf325b74a9ca2",
-            "c5bdd4cf405904ec",
-            "7cb8b3c49a8ea725",
-            "b32ea7b03949847a",
-            "08135622e06f6cc3",
-            "458bd29c11be2b73"
-        ],
-        "x": 515,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "215b79df40119613",
-        "type": "change",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"tab\":\"Pupuk\"}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 380,
-        "y": 60,
+        "id": "parse_image_list",
+        "type": "function",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
+        "name": "Format for Table",
+        "func": "const images = msg.payload.images || msg.payload;\n\nif (!Array.isArray(images)) {\n    node.error(\"Payload bukan array. Cek respons API.\", msg);\n    return null;\n}\n\nimages.sort((a, b) => new Date(b.last_modified) - new Date(a.last_modified));\n\nmsg.payload = images.map(item => {\n    const date = new Date(item.last_modified);\n\n    // Format waktu 24 jam (untuk kolom \"last_modified\")\n    const timeOnly = date.toLocaleTimeString('id-ID', { hour12: false });\n\n    // Format waktu 12 jam (untuk title)\n    const timeTitle = date.toLocaleTimeString('en-US', {\n        hour: '2-digit',\n        minute: '2-digit',\n        hour12: true\n    });\n\n    const day = date.getDate(); // misal 25\n    const month = date.getMonth() + 1; // misal 7\n\n    // Ekstrak nomor kamera dari filename\n    const match = item.filename.match(/^camera_(\\d+)_/);\n    const cameraNumber = match ? match[1] : \"X\";\n\n    const title = `C${cameraNumber} - ${day}/${month} - ${timeTitle}`;\n\n    return {\n        filename: item.filename,\n        last_modified: timeOnly,\n        size_kb: (item.size / 1024).toFixed(1) + \" KB\",\n        title: title\n    };\n});\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 2,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 200,
         "wires": [
             [
-                "a2a82d5c9cee80c5"
+                "ui_table_images"
             ]
         ]
     },
     {
-        "id": "e7fadc0239631158",
+        "id": "ui_table_images",
+        "type": "ui_table",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
+        "group": "da54263f65557fd0",
+        "name": "Table",
+        "order": 2,
+        "width": 6,
+        "height": 8,
+        "columns": [
+            {
+                "field": "title",
+                "title": "Name",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 890,
+        "y": 200,
+        "wires": [
+            [
+                "ed7ae3e413ecc7fa"
+            ]
+        ]
+    },
+    {
+        "id": "generate_image_tag",
+        "type": "function",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
+        "name": "Generate <img> Tag",
+        "func": "const base64 = msg.payload.toString('base64');\nmsg.payload = `<div class=\"image-container\"><img src=\"data:image/jpeg;base64,${base64}\" /></div>`;\n//msg.payload = `<div class=\"image-container\"><img src=\"https://picsum.photos/720\" /></div>`;\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 280,
+        "wires": [
+            [
+                "ui_image_viewer"
+            ]
+        ]
+    },
+    {
+        "id": "ui_image_viewer",
+        "type": "ui_template",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
+        "group": "da54263f65557fd0",
+        "name": "Image Display",
+        "order": 3,
+        "width": 12,
+        "height": 9,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>\n<style>\n.image-container {\nwidth: 100%; /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\nheight: 400px; /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\nborder: 1px solid #ccc;\noverflow: hidden; /* Opsional, untuk merapikan */\n}\n\n.image-container img {\nwidth: 100%;\nheight: 100%;\nobject-fit: cover; /* Opsi terpenting ada di sini */\n}\n\n</style>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 920,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e20b319ec4356cd",
+        "type": "http request",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
+        "name": "GET /list-images/1",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 490,
+        "y": 280,
+        "wires": [
+            [
+                "generate_image_tag"
+            ]
+        ]
+    },
+    {
+        "id": "ed7ae3e413ecc7fa",
+        "type": "function",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
+        "name": "Pre-HTTP",
+        "func": "// Ambil filename dari payload\nconst filename = msg.payload.filename || msg.payload;  // bisa object atau string\n\n// Cek kalau tidak ada filename\nif (!filename) {\n    node.error(\"Filename tidak ditemukan dalam payload.\", msg);\n    return null;\n}\n\n// Bangun URL berdasarkan filename\nmsg.method = \"GET\";\nmsg.url = `http://python:5000/image/${filename}`;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 280,
+        "wires": [
+            [
+                "5e20b319ec4356cd"
+            ]
+        ]
+    },
+    {
+        "id": "cb10d4aa05a9daae",
         "type": "ui_button",
-        "z": "b67113f05889da3a",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
         "name": "",
-        "group": "824976436fdc2068",
-        "order": 9,
-        "width": 4,
-        "height": 1,
+        "group": "da54263f65557fd0",
+        "order": 1,
+        "width": 2,
+        "height": 2,
         "passthru": false,
-        "label": "Timer",
+        "label": "CAM 1",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "",
+        "payload": "1",
         "payloadType": "str",
-        "topic": "topic",
+        "topic": "payload",
         "topicType": "msg",
-        "x": 170,
+        "x": 110,
         "y": 100,
         "wires": [
             [
-                "598ae280bc2e4bd4"
+                "0d297e49f9c23056"
             ]
         ]
     },
     {
-        "id": "78c9b3cc28395b2a",
+        "id": "23a814de8cbbe989",
         "type": "ui_button",
-        "z": "b67113f05889da3a",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
         "name": "",
-        "group": "824976436fdc2068",
-        "order": 11,
-        "width": 4,
-        "height": 1,
+        "group": "da54263f65557fd0",
+        "order": 4,
+        "width": 2,
+        "height": 2,
         "passthru": false,
-        "label": "Simpan Pengaturan",
+        "label": "CAM 2",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "",
+        "payload": "2",
         "payloadType": "str",
-        "topic": "topic",
+        "topic": "payload",
         "topicType": "msg",
-        "x": 220,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "98392d187027631f",
-        "type": "ui_button",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "group": "824976436fdc2068",
-        "order": 1,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "Box 1",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "box1",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 140,
+        "x": 110,
+        "y": 160,
         "wires": [
             [
-                "d4b4d0b3b43afb81"
+                "0d297e49f9c23056"
             ]
         ]
     },
     {
-        "id": "df0f4e05210b5226",
+        "id": "b91cb9b26debfa0d",
         "type": "ui_button",
-        "z": "b67113f05889da3a",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
         "name": "",
-        "group": "824976436fdc2068",
-        "order": 2,
-        "width": 3,
-        "height": 1,
+        "group": "da54263f65557fd0",
+        "order": 5,
+        "width": 2,
+        "height": 2,
         "passthru": false,
-        "label": "Box 2",
+        "label": "CAM 3",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "box2",
+        "payload": "3",
         "payloadType": "str",
-        "topic": "topic",
+        "topic": "payload",
         "topicType": "msg",
-        "x": 170,
-        "y": 180,
-        "wires": [
-            [
-                "d4b4d0b3b43afb81"
-            ]
-        ]
-    },
-    {
-        "id": "bce0b945d901c449",
-        "type": "ui_button",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "group": "824976436fdc2068",
-        "order": 3,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "Box 3",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "box3",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
+        "x": 110,
         "y": 220,
         "wires": [
             [
-                "d4b4d0b3b43afb81"
+                "0d297e49f9c23056"
             ]
         ]
     },
     {
-        "id": "ffbcb9971cf315a8",
+        "id": "41753e3740e8d8a2",
         "type": "ui_button",
-        "z": "b67113f05889da3a",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
         "name": "",
-        "group": "824976436fdc2068",
-        "order": 4,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "Box 4",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "box4",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 260,
-        "wires": [
-            [
-                "d4b4d0b3b43afb81"
-            ]
-        ]
-    },
-    {
-        "id": "dbd6bfaf489a1ec6",
-        "type": "ui_button",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "group": "824976436fdc2068",
-        "order": 10,
-        "width": 4,
-        "height": 1,
-        "passthru": false,
-        "label": "Pupuk",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 60,
-        "wires": [
-            [
-                "215b79df40119613"
-            ]
-        ]
-    },
-    {
-        "id": "4cb201dbb5a30e8a",
-        "type": "ui_text_input",
-        "z": "b67113f05889da3a",
-        "name": "Batas Atas EC",
-        "label": "",
-        "tooltip": "Batas Atas EC",
-        "group": "824976436fdc2068",
+        "group": "da54263f65557fd0",
         "order": 6,
-        "width": 12,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "CAM 4",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
         "className": "",
+        "icon": "",
+        "payload": "4",
+        "payloadType": "str",
+        "topic": "payload",
         "topicType": "msg",
-        "x": 620,
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "0d297e49f9c23056"
+            ]
+        ]
+    },
+    {
+        "id": "0d297e49f9c23056",
+        "type": "function",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
+        "name": "Pre-HTTP",
+        "func": "const id = msg.payload\n\n// Bangun URL berdasarkan filename\nmsg.method = \"GET\";\nmsg.url = `http://python:5000/image-list/${id}`;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "http_get_images"
+            ]
+        ]
+    },
+    {
+        "id": "13ee73bb991fd6b3",
+        "type": "ui_template",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "5d38ddf977d613cd",
+        "group": "cfe4364cb2e71871",
+        "name": "",
+        "order": 1,
+        "width": 18,
+        "height": "12",
+        "format": "<div class=\"image-container\" style=\"text-align: center\">\n  <img id=\"stream\" ng-src=\"{{'data:image/jpeg;base64,' + msg.payload}}\" style=\"max-width: 100%; border: 1px solid #ccc;\">\n</div>\n\n<style>\n  .image-container {\n    width: 100%;\n    /* Lebar container bisa 100% atau ukuran tetap seperti 400px */\n    height: 650px;\n    /* Container HARUS memiliki tinggi yang pasti untuk object-fit bekerja efektif */\n    border: 1px solid #ccc;\n    overflow: hidden;\n    /* Opsional, untuk merapikan */\n  }\n\n  .image-container img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    /* Opsi terpenting ada di sini */\n  }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 800,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "multipart_decoder",
+        "type": "multipart-decoder",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "5d38ddf977d613cd",
+        "name": "MJPEG Decoder",
+        "ret": "bin",
+        "url": "",
+        "tls": "",
+        "authentication": "none",
+        "delay": 0,
+        "maximum": 1000000,
+        "blockSize": 1,
+        "enableLog": "off",
+        "x": 460,
+        "y": 500,
+        "wires": [
+            [
+                "4b01021e77b2d98d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4b01021e77b2d98d",
+        "type": "function",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "5d38ddf977d613cd",
+        "name": "to stream",
+        "func": "// Convert binary JPEG buffer to base64\nmsg.payload = msg.payload.toString('base64');\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 500,
+        "wires": [
+            [
+                "13ee73bb991fd6b3"
+            ]
+        ]
+    },
+    {
+        "id": "17f2ce60063ab4c8",
+        "type": "ui_button",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "5d38ddf977d613cd",
+        "name": "",
+        "group": "0d8e14ee3e595e70",
+        "order": 1,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "CAM 1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "payload",
+        "topicType": "msg",
+        "x": 110,
         "y": 420,
         "wires": [
-            []
+            [
+                "69a113402c0d245c"
+            ]
         ]
     },
     {
-        "id": "aec49bf1b5900b88",
-        "type": "ui_text_input",
-        "z": "b67113f05889da3a",
-        "name": "Batas Bawah EC",
-        "label": "",
-        "tooltip": "Batas Bawah EC",
-        "group": "824976436fdc2068",
-        "order": 8,
-        "width": 12,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
+        "id": "f6df333a94bf0f3c",
+        "type": "ui_button",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "5d38ddf977d613cd",
+        "name": "",
+        "group": "0d8e14ee3e595e70",
+        "order": 2,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "CAM 2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
         "className": "",
+        "icon": "",
+        "payload": "2",
+        "payloadType": "str",
+        "topic": "payload",
         "topicType": "msg",
-        "x": 630,
+        "x": 110,
+        "y": 480,
+        "wires": [
+            [
+                "69a113402c0d245c"
+            ]
+        ]
+    },
+    {
+        "id": "c4ee04ac4884da0d",
+        "type": "ui_button",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "5d38ddf977d613cd",
+        "name": "",
+        "group": "0d8e14ee3e595e70",
+        "order": 3,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "CAM 3",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "3",
+        "payloadType": "str",
+        "topic": "payload",
+        "topicType": "msg",
+        "x": 110,
         "y": 540,
         "wires": [
-            []
+            [
+                "69a113402c0d245c"
+            ]
         ]
     },
     {
-        "id": "d11d7dd1aa7ca244",
-        "type": "ui_text",
-        "z": "b67113f05889da3a",
-        "group": "824976436fdc2068",
-        "order": 5,
-        "width": 12,
-        "height": 1,
+        "id": "b4eab696001276b5",
+        "type": "ui_button",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "5d38ddf977d613cd",
         "name": "",
-        "label": "Batas Atas EC",
-        "format": "",
-        "layout": "row-left",
+        "group": "0d8e14ee3e595e70",
+        "order": 4,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "CAM 4",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
         "className": "",
-        "style": true,
-        "font": "Tahoma,Geneva,sans-serif",
-        "fontSize": "20",
-        "color": "#00796b",
-        "x": 620,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "5586921661ae8025",
-        "type": "ui_text",
-        "z": "b67113f05889da3a",
-        "group": "824976436fdc2068",
-        "order": 7,
-        "width": 12,
-        "height": 1,
-        "name": "",
-        "label": "Batas Bawah EC",
-        "format": "",
-        "layout": "row-left",
-        "className": "",
-        "style": true,
-        "font": "Tahoma,Geneva,sans-serif",
-        "fontSize": "20",
-        "color": "#00796b",
-        "x": 630,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "a2a82d5c9cee80c5",
-        "type": "ui_ui_control",
-        "z": "b67113f05889da3a",
-        "name": "",
-        "events": "all",
-        "x": 580,
-        "y": 80,
+        "icon": "",
+        "payload": "4",
+        "payloadType": "str",
+        "topic": "payload",
+        "topicType": "msg",
+        "x": 110,
+        "y": 600,
         "wires": [
+            [
+                "69a113402c0d245c"
+            ]
+        ]
+    },
+    {
+        "id": "69a113402c0d245c",
+        "type": "function",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "5d38ddf977d613cd",
+        "name": "Pre-HTTP",
+        "func": "const id = msg.payload\n\n// Bangun URL berdasarkan filename\nmsg.method = \"GET\";\nmsg.url = `http://python:5000/video_feed/${id}`;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 500,
+        "wires": [
+            [
+                "multipart_decoder"
+            ]
+        ]
+    },
+    {
+        "id": "39572a2fc5f0895d",
+        "type": "inject",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 720,
+        "wires": [
+            [
+                "ca4a5250ea116c8f"
+            ]
+        ]
+    },
+    {
+        "id": "ca4a5250ea116c8f",
+        "type": "http request",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://python:5000/upload",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 370,
+        "y": 720,
+        "wires": [
+            [
+                "721d1c020fd18ce8",
+                "7cf38005e5845ce7"
+            ]
+        ]
+    },
+    {
+        "id": "7cf38005e5845ce7",
+        "type": "debug",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "HTTP REQUEST",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "ebaacd4c24219e15",
+        "type": "inject",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "74c15ca3613cd339",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 730,
+        "y": 320,
+        "wires": [
+            [
+                "generate_image_tag"
+            ]
+        ]
+    },
+    {
+        "id": "721d1c020fd18ce8",
+        "type": "split",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "Split",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "property": "payload.upload_results",
+        "x": 130,
+        "y": 800,
+        "wires": [
+            [
+                "7edd5558424fa787"
+            ]
+        ]
+    },
+    {
+        "id": "7edd5558424fa787",
+        "type": "switch",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "Only Success",
+        "property": "payload.upload_results.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "success",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": true,
+        "outputs": 2,
+        "x": 380,
+        "y": 800,
+        "wires": [
+            [
+                "580b3fa8e9cb3bb9"
+            ],
             []
         ]
+    },
+    {
+        "id": "fc13d7a2539d0e02",
+        "type": "http request",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "GET /list-images/1",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 170,
+        "y": 900,
+        "wires": [
+            [
+                "84089cd7390bd171"
+            ]
+        ]
+    },
+    {
+        "id": "580b3fa8e9cb3bb9",
+        "type": "function",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "Get Image",
+        "func": "// [FUNGSI 1: Siapkan GET MinIO]\n// msg.payload sekarang berisi:\n// { camera_index: 1, minio_path: \"...\", status: \"success\" }\n\n// Ambil filename dari payload\nconst filename = msg.payload.upload_results.minio_path;\n\nif (!filename) {\n    node.error(\"minio_path tidak ditemukan dalam payload.\", msg);\n    return null;\n}\n\n// Simpan nama file untuk digunakan oleh Fungsi 2\nmsg.filename = filename;\n\n// Siapkan request ke MinIO/Python\nmsg.method = \"GET\";\nmsg.url = `http://python:5000/image/${filename}`;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 800,
+        "wires": [
+            [
+                "fc13d7a2539d0e02"
+            ]
+        ]
+    },
+    {
+        "id": "84089cd7390bd171",
+        "type": "function",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "Post",
+        "func": "// --- GANTI DENGAN INFO SUPABASE ANDA ---\nconst SUPABASE_URL = \"https://studio.almuzky.my.id/\";\nconst BUCKET_NAME = \"images\";\nconst ANON_KEY = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE\";\nconst SERVICE_KEY = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q\"; // Gunakan Service Key untuk upload\n// ----------------------------------------\n\n// msg.payload SUDAH berisi buffer gambar dari node sebelumnya.\n// Kita hanya perlu menambahkan detail untuk node http-request selanjutnya.\nif (msg.statusCode !== 200) {\n    node.warn(`Gagal mengambil gambar dari MinIO. Status: ${msg.statusCode}`, msg);\n    return null; // Hentikan alur jika download gagal\n}\n\n// 2. Cek apakah filename ada (diteruskan dari Fungsi 1)\nif (!msg.filename) {\n    node.error(\"msg.filename tidak ditemukan. Pastikan Fungsi 1 menyimpannya.\", msg);\n    return null;\n}\n\nconst FILE_PATH = \"A1-\" + msg.filename;\n\n// 1. Atur Method untuk node selanjutnya\nmsg.method = \"POST\";\n\n// 2. Atur URL Supabase Storage\nmsg.url = `${SUPABASE_URL}/storage/v1/object/${BUCKET_NAME}/${FILE_PATH}`;\n// 3. Atur Headers\nmsg.headers = {\n    \"Authorization\": `Bearer ${SERVICE_KEY}`,\n    \"apikey\": ANON_KEY,\n    \"Content-Type\": \"image/jpeg\", // PENTING: Sesuaikan dengan tipe file Anda\n    \"x-upsert\": \"true\" // Opsional: Timpa file jika sudah ada\n};\n\n// msg.payload (buffer) diteruskan secara otomatis\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 1,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 900,
+        "wires": [
+            [
+                "201280cca311acb4"
+            ]
+        ]
+    },
+    {
+        "id": "201280cca311acb4",
+        "type": "http request",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 590,
+        "y": 900,
+        "wires": [
+            [
+                "9692197c4d122455"
+            ]
+        ]
+    },
+    {
+        "id": "9692197c4d122455",
+        "type": "debug",
+        "z": "1a1b1c1d1e1f1g1h",
+        "g": "1e9c94dd73ea7c7f",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 900,
+        "wires": []
     },
     {
         "id": "ea8e6b6e9d05535e",
@@ -11043,6 +10482,245 @@
                 "9581799d4a78ba3c"
             ]
         ]
+    },
+    {
+        "id": "2ffc5d28813e9fc0",
+        "type": "function",
+        "z": "aca42d5c811e4c56",
+        "name": "Random Data",
+        "func": "// --- Fungsi Bantuan untuk Data Acak ---\n\n// Menghasilkan angka float acak dalam rentang (min, max)\nfunction getRandomFloat(min, max, decimals) {\n    let str = (Math.random() * (max - min) + min).toFixed(decimals);\n    return parseFloat(str);\n}\n\n// Menghasilkan angka integer acak dalam rentang [min, max]\nfunction getRandomInt(min, max) {\n    min = Math.ceil(min);\n    max = Math.floor(max);\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n}\n\n// Menghasilkan 0 atau 1 secara acak\nfunction getRandomBinary() {\n    return Math.round(Math.random());\n}\n\n// --- Membuat Objek Data ---\n\nlet data = {\n    device: {},\n    sensors: {\n        cwt: [],\n        npk: {},\n        lasers: [],\n        water_level: {}\n    },\n    actuators: {}\n};\n\n// Mengisi data device\nlet now = new Date();\ndata.device.name = \"Modul 1\";\ndata.device.time = now.toISOString();\ndata.device.active_on = now.toISOString();\n\n// --- Mengisi data Sensors ---\n\n// 1. Sensor CWT (Suhu & Kelembapan)\ndata.sensors.cwt.push({\n    id: \"cwt_sensor_1\",\n    temperature: getRandomFloat(28.0, 32.0, 1), // Suhu acak 28.0 - 32.0\n    humidity: getRandomFloat(60.0, 75.0, 1)      // Kelembapan acak 60.0 - 75.0\n});\ndata.sensors.cwt.push({\n    id: \"cwt_sensor_2\",\n    temperature: getRandomFloat(27.0, 31.0, 1),\n    humidity: getRandomFloat(65.0, 80.0, 1)\n});\n\n// 2. Sensor NPK\ndata.sensors.npk = {\n    nitrogen: getRandomInt(100, 150),\n    phosphorus: getRandomInt(50, 70),\n    potassium: getRandomInt(70, 100),\n    temperature: getRandomFloat(29.0, 31.0, 1), // Suhu air\n    ph: getRandomFloat(6.5, 8.5, 1),            // pH acak\n    ec: getRandomFloat(20.0, 25.0, 1)           // EC acak\n};\n\n// 3. Sensor Lasers (Status 0 atau 1)\ndata.sensors.lasers.push({ id: \"laser1\", status: getRandomBinary() });\ndata.sensors.lasers.push({ id: \"laser2\", status: getRandomBinary() });\ndata.sensors.lasers.push({ id: \"laser3\", status: getRandomBinary() });\n\n// 4. Sensor Water Level (Status 0 atau 1)\ndata.sensors.water_level = {\n    status: getRandomBinary()\n};\n\n// --- Mengisi data Actuators (Status 0 atau 1) ---\ndata.actuators.pump = {\n    status: getRandomBinary()\n};\ndata.actuators.solenoid_valve = {\n    status: getRandomBinary()\n};\n\n// Mengatur payload output\nmsg.payload = data;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "8d323718d5718af6"
+            ]
+        ]
+    },
+    {
+        "id": "7bf8a9e4e00e4f87",
+        "type": "inject",
+        "z": "aca42d5c811e4c56",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "2ffc5d28813e9fc0"
+            ]
+        ]
+    },
+    {
+        "id": "8d323718d5718af6",
+        "type": "mqtt out",
+        "z": "aca42d5c811e4c56",
+        "name": "",
+        "topic": "data",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "mqtt-broker-config",
+        "x": 570,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "e2555634e6549f7b",
+        "type": "influxdb3-write",
+        "z": "aca42d5c811e4c56",
+        "g": "fc8c341b08d2f86e",
+        "influxdb": "c0d7f1fb143bef1a",
+        "name": "InfluxDB Nodered Data",
+        "measurement": "",
+        "database": "",
+        "x": 570,
+        "y": 700,
+        "wires": [
+            [
+                "e753bd86278c106c"
+            ]
+        ]
+    },
+    {
+        "id": "a7877adf0237da9b",
+        "type": "mqtt in",
+        "z": "aca42d5c811e4c56",
+        "g": "fc8c341b08d2f86e",
+        "name": "",
+        "topic": "data",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "mqtt-broker-config",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 700,
+        "wires": [
+            [
+                "56524b5003f98ffc"
+            ]
+        ]
+    },
+    {
+        "id": "e753bd86278c106c",
+        "type": "debug",
+        "z": "aca42d5c811e4c56",
+        "g": "fc8c341b08d2f86e",
+        "name": "InfluxDB-Out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "56524b5003f98ffc",
+        "type": "function",
+        "z": "aca42d5c811e4c56",
+        "g": "fc8c341b08d2f86e",
+        "name": "InfluxDB Field",
+        "func": "// Ambil data JSON yang masuk\nlet data = msg.payload;\n\ntry {\n    // --- 1. Tentukan TAGS ---\n    // Tags adalah metadata untuk filtering (WHERE clause)\n    // Contoh: \"Modul 1\"\n    let tags = {\n        box_id: 1,\n        box_name: data.device.name,\n        // Anda bisa tambahkan tag statis di sini jika perlu\n        lokasi: \"Greenhouse ITB\" \n    };\n\n    // --- 2. Tentukan FIELDS ---\n    // Fields adalah data/nilai yang ingin Anda ukur dan grafikka\n    let fields = {\n        // Dari sensor 'cwt' (Suhu & Kelembapan)\n        temp_luar: data.sensors.cwt[0].temperature,\n        hum_luar: data.sensors.cwt[0].humidity,\n        temp_dalam: data.sensors.cwt[1].temperature,\n        hum_dalam: data.sensors.cwt[1].humidity,\n\n        // Dari sensor 'npk' (Kualitas Air)\n        nitrogen: data.sensors.npk.nitrogen,\n        phosphorus: data.sensors.npk.phosphorus,\n        potassium: data.sensors.npk.potassium,\n        temp_air: data.sensors.npk.temperature,\n        ph: data.sensors.npk.ph,\n        ec: data.sensors.npk.ec,\n\n        // Dari sensor 'lasers'\n        laser1_status: data.sensors.lasers[0].status,\n        laser2_status: data.sensors.lasers[1].status,\n        laser3_status: data.sensors.lasers[2].status,\n\n        // Dari 'water_level'\n        lv_status: data.sensors.water_level.status,\n\n        // Dari 'actuators' (mengubah 1/0 menjadi \"on\"/\"off\")\n        pump_status: (data.actuators.pump.status === 1) ? \"on\" : \"off\",\n        valve_status: (data.actuators.solenoid_valve.status === 1) ? \"on\" : \"off\"\n    };\n\n    // --- 3. Tentukan TIMESTAMP ---\n    // Menggunakan timestamp dari device, ini JAUH LEBIH BAIK\n    // daripada membiarkan InfluxDB yang men-timestamp-nya\n    let timestamp = new Date(data.device.time);\n\n    // --- 4. Bangun Payload Akhir ---\n    \n    // Atur 'measurement' (nama tabel di InfluxDB)\n    msg.measurement = \"aeroponik1\";\n\n    // Buat payload untuk node influxdb3\n    msg.payload = {\n        tags: tags,\n        fields: fields,\n        timestamp: timestamp\n    };\n\n    return msg;\n\n} catch (e) {\n    // Tangkap error jika struktur JSON berubah/tidak lengkap\n    node.error(\"Gagal memproses JSON untuk InfluxDB: \" + e.message, msg);\n    return null; // Hentikan alur\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "e2555634e6549f7b"
+            ]
+        ]
+    },
+    {
+        "id": "36b8af3c16853acb",
+        "type": "inject",
+        "z": "aca42d5c811e4c56",
+        "g": "c20963a527cf4aab",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 820,
+        "wires": [
+            [
+                "15e161c40015209a"
+            ]
+        ]
+    },
+    {
+        "id": "d46e6ecf37cd56fa",
+        "type": "http request",
+        "z": "aca42d5c811e4c56",
+        "g": "c20963a527cf4aab",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 630,
+        "y": 820,
+        "wires": [
+            [
+                "15f20cdc54b2ca33"
+            ]
+        ]
+    },
+    {
+        "id": "15e161c40015209a",
+        "type": "function",
+        "z": "aca42d5c811e4c56",
+        "g": "c20963a527cf4aab",
+        "name": "Upload Data to Supabase",
+        "func": "// [Fungsi: Mengumpulkan Global & Menyiapkan HTTP POST]\n\n// --- GANTI DENGAN INFO SUPABASE ANDA ---\nconst SUPABASE_URL = \"https://studio.almuzky.my.id/\";\nconst ANON_KEY = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE\";\nconst SERVICE_KEY = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q\"; // Gunakan Service Key untuk upload\n// ----------------------------------------\n\n// --- KONFIGURASI DATA ---\nconst MODULE_ID = 1; \nconst TABLE_NAME = \"logs\"; // Nama tabel Anda\n// --------------------\n\n// 1. Buat objek JSON 'logs' dengan mengambil semua data dari global.\nlet logData = {\n    temp_luar: global.get(\"temp1\") || null,\n    hum_luar: global.get(\"hum1\") || null,\n    temp_dalam: global.get(\"temp2\") || null,\n    hum_dalam: global.get(\"hum2\") || null,\n    nitrogen: global.get(\"nitrogen\") || null,\n    phosphorus: global.get(\"phosphorus\") || null,\n    potassium: global.get(\"potassium\") || null,\n    temp_air: global.get(\"temp3\") || null,\n    ph: global.get(\"ph1\") || null,\n    ec: global.get(\"ec1\") || null,\n    laser1_status: global.get(\"laser1_status\") || null,\n    laser2_status: global.get(\"laser2_status\") || null,\n    laser3_status: global.get(\"laser3_status\") || null,\n    water_level: global.get(\"lv1\") || null,\n    pump_status: global.get(\"pump1\") || null,\n    solenoid_valve_status: global.get(\"solenoid_valve\") || null\n};\n\n// 2. Buat payload (HTTP Body)\n// Ini harus sesuai dengan kolom tabel Anda: 'module_id' dan 'logs'\nmsg.payload = {\n    module_id: MODULE_ID,\n    logs: logData \n};\n\n// 3. Siapkan properti untuk node 'http request'\nmsg.method = \"POST\";\n\n// Endpoint Supabase REST API untuk INSERT ke tabel\nmsg.url = `${SUPABASE_URL}/rest/v1/${TABLE_NAME}`;\n\nmsg.headers = {\n    \"apikey\": ANON_KEY,\n    \"Authorization\": `Bearer ${SERVICE_KEY}`,\n    \"Content-Type\": \"application/json\",\n    // 'Prefer' akan meminta Supabase mengembalikan data yang baru saja\n    // Anda masukkan, bagus untuk debugging.\n    \"Prefer\": \"return=representation\" \n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 820,
+        "wires": [
+            [
+                "d46e6ecf37cd56fa"
+            ]
+        ]
+    },
+    {
+        "id": "15f20cdc54b2ca33",
+        "type": "debug",
+        "z": "aca42d5c811e4c56",
+        "g": "c20963a527cf4aab",
+        "name": "Data Out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 820,
+        "wires": []
     },
     {
         "id": "313d84f016630e3a",
@@ -14786,6 +14464,841 @@
         "statusType": "auto",
         "x": 880,
         "y": 460,
+        "wires": []
+    },
+    {
+        "id": "598ae280bc2e4bd4",
+        "type": "change",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"tab\":\"Setting\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "a2a82d5c9cee80c5"
+            ]
+        ]
+    },
+    {
+        "id": "6c6371bc8c66c989",
+        "type": "change",
+        "z": "b67113f05889da3a",
+        "name": "Store settings",
+        "rules": [
+            {
+                "t": "set",
+                "p": "batasAtas",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d81f49e54137cada",
+        "type": "change",
+        "z": "b67113f05889da3a",
+        "name": "Store settings",
+        "rules": [
+            {
+                "t": "set",
+                "p": "batasBawah",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23a304930d57f368",
+        "type": "function",
+        "z": "b67113f05889da3a",
+        "name": "function 37",
+        "func": "msg.payload = global.get('batasAtas')\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 420,
+        "wires": [
+            [
+                "4cb201dbb5a30e8a"
+            ]
+        ]
+    },
+    {
+        "id": "970f1e9b9483637c",
+        "type": "inject",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 420,
+        "wires": [
+            [
+                "23a304930d57f368"
+            ]
+        ]
+    },
+    {
+        "id": "f69e5fa92e42d275",
+        "type": "function",
+        "z": "b67113f05889da3a",
+        "name": "function 38",
+        "func": "msg.payload = global.get('batasBawah')\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 540,
+        "wires": [
+            [
+                "aec49bf1b5900b88"
+            ]
+        ]
+    },
+    {
+        "id": "4f25bdf30555da2c",
+        "type": "inject",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 540,
+        "wires": [
+            [
+                "f69e5fa92e42d275"
+            ]
+        ]
+    },
+    {
+        "id": "e04a2b326a31d748",
+        "type": "switch",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "property": "startSystem",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 930,
+        "y": 480,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d4b4d0b3b43afb81",
+        "type": "change",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "box",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "e9223f9c7df3a9de"
+            ]
+        ]
+    },
+    {
+        "id": "e9223f9c7df3a9de",
+        "type": "link out",
+        "z": "b67113f05889da3a",
+        "name": "statusBox",
+        "mode": "link",
+        "links": [
+            "b8ddf325b74a9ca2",
+            "c5bdd4cf405904ec",
+            "7cb8b3c49a8ea725",
+            "b32ea7b03949847a",
+            "08135622e06f6cc3",
+            "458bd29c11be2b73"
+        ],
+        "x": 515,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "215b79df40119613",
+        "type": "change",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"tab\":\"Pupuk\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 60,
+        "wires": [
+            [
+                "a2a82d5c9cee80c5"
+            ]
+        ]
+    },
+    {
+        "id": "e7fadc0239631158",
+        "type": "ui_button",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "group": "824976436fdc2068",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Timer",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "598ae280bc2e4bd4"
+            ]
+        ]
+    },
+    {
+        "id": "78c9b3cc28395b2a",
+        "type": "ui_button",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "group": "824976436fdc2068",
+        "order": 11,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Simpan Pengaturan",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 220,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "98392d187027631f",
+        "type": "ui_button",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "group": "824976436fdc2068",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Box 1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "box1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 140,
+        "wires": [
+            [
+                "d4b4d0b3b43afb81"
+            ]
+        ]
+    },
+    {
+        "id": "df0f4e05210b5226",
+        "type": "ui_button",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "group": "824976436fdc2068",
+        "order": 2,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Box 2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "box2",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "d4b4d0b3b43afb81"
+            ]
+        ]
+    },
+    {
+        "id": "bce0b945d901c449",
+        "type": "ui_button",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "group": "824976436fdc2068",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Box 3",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "box3",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "d4b4d0b3b43afb81"
+            ]
+        ]
+    },
+    {
+        "id": "ffbcb9971cf315a8",
+        "type": "ui_button",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "group": "824976436fdc2068",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Box 4",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "box4",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "d4b4d0b3b43afb81"
+            ]
+        ]
+    },
+    {
+        "id": "dbd6bfaf489a1ec6",
+        "type": "ui_button",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "group": "824976436fdc2068",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Pupuk",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 60,
+        "wires": [
+            [
+                "215b79df40119613"
+            ]
+        ]
+    },
+    {
+        "id": "4cb201dbb5a30e8a",
+        "type": "ui_text_input",
+        "z": "b67113f05889da3a",
+        "name": "Batas Atas EC",
+        "label": "",
+        "tooltip": "Batas Atas EC",
+        "group": "824976436fdc2068",
+        "order": 6,
+        "width": 12,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 620,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aec49bf1b5900b88",
+        "type": "ui_text_input",
+        "z": "b67113f05889da3a",
+        "name": "Batas Bawah EC",
+        "label": "",
+        "tooltip": "Batas Bawah EC",
+        "group": "824976436fdc2068",
+        "order": 8,
+        "width": 12,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 630,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d11d7dd1aa7ca244",
+        "type": "ui_text",
+        "z": "b67113f05889da3a",
+        "group": "824976436fdc2068",
+        "order": 5,
+        "width": 12,
+        "height": 1,
+        "name": "",
+        "label": "Batas Atas EC",
+        "format": "",
+        "layout": "row-left",
+        "className": "",
+        "style": true,
+        "font": "Tahoma,Geneva,sans-serif",
+        "fontSize": "20",
+        "color": "#00796b",
+        "x": 620,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "5586921661ae8025",
+        "type": "ui_text",
+        "z": "b67113f05889da3a",
+        "group": "824976436fdc2068",
+        "order": 7,
+        "width": 12,
+        "height": 1,
+        "name": "",
+        "label": "Batas Bawah EC",
+        "format": "",
+        "layout": "row-left",
+        "className": "",
+        "style": true,
+        "font": "Tahoma,Geneva,sans-serif",
+        "fontSize": "20",
+        "color": "#00796b",
+        "x": 630,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "a2a82d5c9cee80c5",
+        "type": "ui_ui_control",
+        "z": "b67113f05889da3a",
+        "name": "",
+        "events": "all",
+        "x": 580,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84b452cbb6af28aa",
+        "type": "mqtt in",
+        "z": "a03b98cdab95a8bc",
+        "name": "Detection Results In",
+        "topic": "detection/heights",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "mqtt-broker-config",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "0afba2d8a9652baa",
+                "ef99038cc9ddd7e4",
+                "88dc15a42bf36175"
+            ]
+        ]
+    },
+    {
+        "id": "0afba2d8a9652baa",
+        "type": "json",
+        "z": "a03b98cdab95a8bc",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 320,
+        "y": 80,
+        "wires": [
+            [
+                "e7def614596be0e9"
+            ]
+        ]
+    },
+    {
+        "id": "e7def614596be0e9",
+        "type": "function",
+        "z": "a03b98cdab95a8bc",
+        "name": "Extract height_cm",
+        "func": "// Grab height_cm of the first detection in array\ntry {\n    const detection = msg.payload.detections[0];\n    msg.payload = detection.height_cm;\n    return msg;\n} catch (err) {\n    node.error(\"Invalid detection format\", msg);\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "16eed8fce517c524"
+            ]
+        ]
+    },
+    {
+        "id": "16eed8fce517c524",
+        "type": "switch",
+        "z": "a03b98cdab95a8bc",
+        "name": "Height > 24 cm?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "24",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 80,
+        "wires": [
+            [
+                "41e699a169aca9bc"
+            ]
+        ]
+    },
+    {
+        "id": "41e699a169aca9bc",
+        "type": "change",
+        "z": "a03b98cdab95a8bc",
+        "name": "Set Payload: on",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "on",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 80,
+        "wires": [
+            [
+                "a8b3404554be8a44",
+                "2256ffd95b624497"
+            ]
+        ]
+    },
+    {
+        "id": "a8b3404554be8a44",
+        "type": "mqtt out",
+        "z": "a03b98cdab95a8bc",
+        "name": "Pump Trigger",
+        "topic": "pump/control",
+        "qos": "",
+        "retain": "",
+        "broker": "mqtt-broker-config",
+        "x": 1140,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2256ffd95b624497",
+        "type": "debug",
+        "z": "a03b98cdab95a8bc",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "ef99038cc9ddd7e4",
+        "type": "debug",
+        "z": "a03b98cdab95a8bc",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "88dc15a42bf36175",
+        "type": "function",
+        "z": "a03b98cdab95a8bc",
+        "name": "Calculate Average Height",
+        "func": "// Check if the payload and detections array exist\nif (msg.payload && Array.isArray(msg.payload) && msg.payload.length > 0 && msg.payload[0].detections && Array.isArray(msg.payload[0].detections)) {\n\n    let totalHeight = 0;\n    let numberOfDetections = 0;\n\n    // The detections array is inside the first element of the payload array\n    const detections = msg.payload[0].detections;\n\n    // Iterate through each detection to sum up heights\n    for (let i = 0; i < detections.length; i++) {\n        // Check if the height_cm property exists\n        if (typeof detections[i].height_cm === 'number') {\n            totalHeight += detections[i].height_cm;\n            numberOfDetections++;\n        }\n    }\n\n    let averageHeight = 0;\n    if (numberOfDetections > 0) {\n        averageHeight = totalHeight / numberOfDetections;\n    }\n\n    // Store the calculated average height in the message object\n    // We can put it in msg.payload, or a new property like msg.averageHeight\n    msg.payload = averageHeight; // Overwriting payload with the average\n\n    // Optionally, you might keep the original message and add the average as a new property\n    // msg.averageHeight = averageHeight;\n\n    // Send the modified message to the next node\n    return msg;\n\n} else {\n    // If payload or detections are not as expected, you might want to log a warning\n    // or simply not send a message downstream.\n    node.warn(\"Received message payload structure is not as expected or no detections found.\");\n    // Return null to stop the message from going to the next node\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 240,
+        "wires": [
+            [
+                "4df2fe24b6504dd6"
+            ]
+        ]
+    },
+    {
+        "id": "4df2fe24b6504dd6",
+        "type": "switch",
+        "z": "a03b98cdab95a8bc",
+        "name": "Check Average > Threshold",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "20",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 680,
+        "y": 240,
+        "wires": [
+            [
+                "670cf2b91623bf63"
+            ],
+            [
+                "5c08312f8b8b382a"
+            ]
+        ]
+    },
+    {
+        "id": "9545a98ca4ed109b",
+        "type": "mqtt out",
+        "z": "a03b98cdab95a8bc",
+        "name": "Pump Control MQTT",
+        "topic": "pump/control",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "mqtt-broker-config",
+        "x": 1180,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "670cf2b91623bf63",
+        "type": "change",
+        "z": "a03b98cdab95a8bc",
+        "name": "Set ON Payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ON",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 240,
+        "wires": [
+            [
+                "9545a98ca4ed109b"
+            ]
+        ]
+    },
+    {
+        "id": "5c08312f8b8b382a",
+        "type": "debug",
+        "z": "a03b98cdab95a8bc",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 300,
         "wires": []
     }
 ]

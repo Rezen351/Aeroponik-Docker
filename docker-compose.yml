@@ -10,8 +10,8 @@ services:
     volumes:
       - ./node-red-data:/data
       - /etc/localtime:/etc/localtime:ro
-    devices:
-      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    # devices:
+    #   # - "/dev/ttyUSB0:/dev/ttyUSB0"
     group_add:
       - "dialout"
     depends_on:
@@ -69,6 +69,9 @@ services:
       - MQTT_BROKER=mosquitto
       - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
       - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+      - SUPABASE_KEY=${SERVICE_ROLE_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_BUCKET=${BUCKET_NAME}
       - FLASK_APP=app.py
       - FLASK_ENV=development
       - FLASK_DEBUG=1

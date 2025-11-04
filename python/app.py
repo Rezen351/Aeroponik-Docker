@@ -10,7 +10,7 @@ from mqtt import setup_mqtt, MQTT_BROKER
 
 # --- PENGATURAN KAMERA UNTUK 4 CCTV ---
 CCTV_URLS = [
-    os.getenv('CCTV_URL_1', 'rtsp://admin:Admin_TF24!@192.168.1.100:554/stream1'),
+    os.getenv('CCTV_URL_1', 'rtsp://admin:Admin_TF24!@192.168.1.110:554/stream1'),
     os.getenv('CCTV_URL_2', 'rtsp://admin:Admin_TF24!@192.168.1.101:554/stream1'),
     os.getenv('CCTV_URL_3', 'rtsp://admin:Admin_TF24!@192.168.1.102:554/stream1'),
     os.getenv('CCTV_URL_4', 'rtsp://admin:Admin_TF24!@192.168.1.103:554/stream1')
@@ -94,18 +94,17 @@ def upload():
     """Endpoint to upload current frames from all cameras to MinIO."""
     results = []
     for idx in range(4):
+        # Selalu lakukan inisialisasi ulang untuk memastikan gambar selalu terupdate
+        print(f"Melakukan inisialisasi ulang kamera {idx+1} untuk upload...")
+        if not initialize_camera(idx):
+            print(f"Inisialisasi ulang gagal untuk kamera {idx+1}.")
+            results.append({
+                "camera_index": idx + 1,
+                "status": "failed",
+                "reason": "Failed to initialize camera"
+            })
+            continue
         camera = cameras[idx]
-        if camera is None or not camera.isOpened():
-            print(f"Kamera {idx+1} tidak terhubung, mencoba inisialisasi ulang untuk upload...")
-            if not initialize_camera(idx):
-                print(f"Inisialisasi ulang gagal untuk kamera {idx+1}.")
-                results.append({
-                    "camera_index": idx + 1,
-                    "status": "failed",
-                    "reason": "Failed to initialize camera"
-                })
-                continue
-            camera = cameras[idx]
 
         success, frame = camera.read()
         if not success:
@@ -166,6 +165,8 @@ def get_image_list(camera_id):
         for obj in objects
     ]
     return jsonify({"images": image_list})
+
+
 
 if __name__ == '__main__':
     initialize_all_cameras()

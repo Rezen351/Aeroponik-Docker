@@ -12,6 +12,7 @@
         "@omrid01/node-red-dashboard-2-table-tabulator": "^0.8.2",
         "@revolutionpi/node-red-dashboard-2-hmi": "^0.0.4",
         "@sumit_shinde_84/node-red-dashboard-2-ui-webcam": "^1.0.5",
+        "node-red-contrib-aws-s3": "~2.1.0",
         "node-red-contrib-countdown": "~1.3.2",
         "node-red-contrib-filesystem": "~1.0.0",
         "node-red-contrib-fs": "~1.4.1",
