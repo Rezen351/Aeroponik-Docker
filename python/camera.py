@@ -5,9 +5,9 @@ import os
 # --- PENGATURAN KAMERA UNTUK 4 CCTV ---
 CCTV_URLS = [
     os.getenv('CCTV_URL_1', 'rtsp://admin:Admin_TF24!@192.168.1.110:554/stream1'),
-    os.getenv('CCTV_URL_2', 'rtsp://admin:Admin_TF24!@192.168.1.101:554/stream1'),
-    os.getenv('CCTV_URL_3', 'rtsp://admin:Admin_TF24!@192.168.1.102:554/stream1'),
-    os.getenv('CCTV_URL_4', 'rtsp://admin:Admin_TF24!@192.168.1.103:554/stream1')
+    os.getenv('CCTV_URL_2', 'rtsp://admin:Admin_TF24!@192.168.1.111:554/stream1'),
+    os.getenv('CCTV_URL_3', 'rtsp://admin:Admin_TF24!@192.168.1.112:554/stream1'),
+    os.getenv('CCTV_URL_4', 'rtsp://admin:Admin_TF24!@192.168.1.113:554/stream1')
 ]
 
 cameras = [None] * 4
@@ -51,7 +51,7 @@ def generate_frames(camera_index):
         frame = cv2.resize(frame, (640, 480))
 
         # Encode frame ke format JPEG dengan kualitas lebih rendah untuk kecepatan
-        ret, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
+        ret, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
         if not ret:
             continue
 
@@ -63,7 +63,7 @@ def generate_frames(camera_index):
                b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
         # Tambahkan delay untuk mengurangi FPS dan meningkatkan performa
-        time.sleep(0.1)  # Sekitar 10 FPS
+        time.sleep(0.05)  # Sekitar 10 FPS
 
 
 

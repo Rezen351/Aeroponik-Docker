@@ -11,9 +11,9 @@ from mqtt import setup_mqtt, MQTT_BROKER
 # --- PENGATURAN KAMERA UNTUK 4 CCTV ---
 CCTV_URLS = [
     os.getenv('CCTV_URL_1', 'rtsp://admin:Admin_TF24!@192.168.1.110:554/stream1'),
-    os.getenv('CCTV_URL_2', 'rtsp://admin:Admin_TF24!@192.168.1.101:554/stream1'),
-    os.getenv('CCTV_URL_3', 'rtsp://admin:Admin_TF24!@192.168.1.102:554/stream1'),
-    os.getenv('CCTV_URL_4', 'rtsp://admin:Admin_TF24!@192.168.1.103:554/stream1')
+    os.getenv('CCTV_URL_2', 'rtsp://admin:Admin_TF24!@192.168.1.111:554/stream1'),
+    os.getenv('CCTV_URL_3', 'rtsp://admin:Admin_TF24!@192.168.1.112:554/stream1'),
+    os.getenv('CCTV_URL_4', 'rtsp://admin:Admin_TF24!@192.168.1.113:554/stream1')
 ]
 
 # MinIO configuration from environment variables
@@ -117,7 +117,7 @@ def upload():
             continue
 
         # Resize frame
-        frame = cv2.resize(frame, (640, 480))
+        frame = cv2.resize(frame, (1080, 720))
         # Upload to MinIO
         upload_image_to_minio(idx, frame)
         results.append({
