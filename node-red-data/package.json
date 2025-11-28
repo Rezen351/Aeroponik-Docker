@@ -20,6 +20,7 @@
         "node-red-contrib-fs-ops": "~1.6.0",
         "node-red-contrib-gtfs-feed": "~0.0.2",
         "node-red-contrib-image-output": "~0.6.4",
+        "node-red-contrib-influxdb3": "~1.0.2",
         "node-red-contrib-multipart-stream-decoder": "~1.0.0",
         "node-red-contrib-tableify": "~0.0.2",
         "node-red-contrib-ui-etable": "~4.6.3",

@@ -429,7 +429,7 @@
     },
     "@flowfuse/node-red-dashboard": {
         "name": "@flowfuse/node-red-dashboard",
-        "version": "1.29.0",
+        "version": "1.26.0",
         "local": true,
         "user": true,
         "nodes": {
@@ -1216,7 +1216,7 @@
     },
     "node-red-node-email": {
         "name": "node-red-node-email",
-        "version": "5.0.0",
+        "version": "3.1.0",
         "local": true,
         "user": true,
         "nodes": {
@@ -1449,45 +1449,6 @@
             }
         }
     },
-    "@bartbutenaers/node-red-rtsp-to-mjpeg": {
-        "name": "@bartbutenaers/node-red-rtsp-to-mjpeg",
-        "version": "1.0.0",
-        "local": true,
-        "user": false,
-        "nodes": {
-            "rtsp2mjpeg": {
-                "name": "rtsp2mjpeg",
-                "types": [
-                    "rtsp2mjpeg"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "@bartbutenaers/node-red-rtsp-to-mjpeg",
-                "file": "/data/node_modules/@bartbutenaers/node-red-rtsp-to-mjpeg/rtsp2mjpeg.js"
-            }
-        }
-    },
-    "node-red-contrib-influxdb3": {
-        "name": "node-red-contrib-influxdb3",
-        "version": "1.0.2",
-        "local": true,
-        "user": false,
-        "nodes": {
-            "influxdb3": {
-                "name": "influxdb3",
-                "types": [
-                    "influxdb3-config",
-                    "influxdb3-write"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-influxdb3",
-                "file": "/data/node_modules/node-red-contrib-influxdb3/influxdb3.js"
-            }
-        }
-    },
     "node-red-contrib-aws-s3": {
         "name": "node-red-contrib-aws-s3",
         "version": "2.1.0",
@@ -1507,6 +1468,26 @@
                 "user": false,
                 "module": "node-red-contrib-aws-s3",
                 "file": "/data/node_modules/node-red-contrib-aws-s3/aws-s3.js"
+            }
+        }
+    },
+    "node-red-contrib-influxdb3": {
+        "name": "node-red-contrib-influxdb3",
+        "version": "1.0.2",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "influxdb3": {
+                "name": "influxdb3",
+                "types": [
+                    "influxdb3-config",
+                    "influxdb3-write"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-influxdb3",
+                "file": "/data/node_modules/node-red-contrib-influxdb3/influxdb3.js"
             }
         }
     }
